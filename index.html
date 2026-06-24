@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Selamat Ulang Tahun, Novina 🎂</title>
+<meta name="theme-color" id="themeColor" content="#e8467f">
+<meta name="description" content="Sesuatu yang dibuat khusus buat Novi 🌸 — buka tiap hari ya.">
+<meta property="og:title" content="Selamat Ulang Tahun, Novi 🎂">
+<meta property="og:description" content="Ada kejutan kecil buat kamu, buka tiap hari ya 🌷">
+<meta property="og:type" content="website">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Buat Novi">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
@@ -47,6 +58,7 @@
   .shuffle:active{transform:scale(.95);}
 
   .cake-scene{display:flex;flex-direction:column;align-items:center;margin:36px 0 10px;cursor:pointer;user-select:none;}
+  .cake-scene:focus-visible{outline:3px solid var(--rose);outline-offset:6px;border-radius:18px;}
   .cake{position:relative;width:180px;height:172px;}
   .flame{position:absolute;left:50%;bottom:148px;transform:translateX(-50%);width:16px;height:23px;background:radial-gradient(circle at 50% 78%,#fff7c2 0%,#ffd24a 38%,#ff7a1a 74%,#ff4d2e 100%);border-radius:50% 50% 50% 50%/64% 64% 38% 38%;box-shadow:0 0 20px 5px rgba(255,170,40,.6);transform-origin:50% 92%;animation:flicker 1.3s ease-in-out infinite;transition:opacity .4s,transform .4s;z-index:4;}
   .flame::after{content:'';position:absolute;left:50%;top:46%;transform:translateX(-50%);width:6px;height:8px;background:radial-gradient(circle,#cfe6ff,#7db8ff);border-radius:50%;opacity:.85;}
@@ -114,6 +126,7 @@
   .glasses{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:6px 0 2px;}
   .glass{width:42px;height:56px;border:3px solid #8fd3ff;border-top:none;border-radius:4px 4px 14px 14px;position:relative;overflow:hidden;cursor:pointer;background:rgba(255,255,255,.25);transition:transform .15s;}
   .glass:active{transform:scale(.9);}
+  .glass:focus-visible{outline:3px solid var(--rose);outline-offset:3px;}
   .glass .fill{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(#bfe9ff,#6fc0ff);transition:height .4s ease;}
   .glass.full .fill{height:100%;}
   .water-info{text-align:center;margin-top:14px;font-weight:600;color:#3aa0e0;font-size:14px;}
@@ -125,10 +138,25 @@
   .mood-btn.active{border-color:var(--rose);background:linear-gradient(135deg,#fff0d6,#ffe0ec);transform:translateY(-3px) scale(1.05);}
   .mood-msg{text-align:center;margin-top:12px;font-size:13.5px;color:var(--muted);}
 
-  .t-note .badge{background:#e6f6e9;}
-  .journal{width:100%;min-height:96px;border:1px solid var(--cardbd);border-radius:16px;background:var(--item);color:var(--ink);font-family:inherit;font-size:14px;padding:14px;resize:vertical;outline:none;}
-  .journal:focus{border-color:var(--rose);}
-  .note-saved{text-align:right;font-size:12px;color:#1f9d68;height:16px;margin-top:6px;}
+  /* === Grafik mood 7 hari === */
+  .t-chart .badge{background:#e0f0ff;}
+  .mood-week{display:flex;gap:7px;justify-content:space-between;}
+  .mood-day{flex:1;text-align:center;background:var(--item);border-radius:13px;padding:11px 3px;}
+  .mood-day .em{font-size:22px;display:block;line-height:1.35;}
+  .mood-day .em.empty{opacity:.3;}
+  .mood-day .dl{font-size:10.5px;color:var(--muted);font-weight:600;margin-top:4px;}
+  .mood-day.today{box-shadow:0 0 0 2px var(--rose) inset;}
+
+  /* === Milestone / hadiah rahasia === */
+  .t-unlock .badge{background:#ffe7f1;}
+  .unlock-item{display:flex;gap:12px;align-items:flex-start;background:var(--item);border-radius:14px;padding:13px 15px;margin:9px 0;transition:.25s;}
+  .unlock-item .ic{flex:none;width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--ring);}
+  .unlock-item .uc h3{font-size:14px;color:var(--rose-d);margin-bottom:2px;}
+  .unlock-item .uc p{font-size:13px;color:var(--ink);line-height:1.5;}
+  .unlock-item.locked{opacity:.65;}
+  .unlock-item.locked .uc p{color:var(--muted);font-style:italic;}
+  .unlock-item.unlocked{background:linear-gradient(135deg,#fff0d6,#ffe0ec);}
+  [data-theme="dark"] .unlock-item.unlocked{background:rgba(255,134,176,.18);}
 
   ol.list{list-style:none;counter-reset:i;}
   ol.list li{counter-increment:i;position:relative;padding:11px 14px 11px 48px;margin:8px 0;border-radius:14px;background:var(--item);font-size:14.5px;line-height:1.55;color:var(--ink);}
@@ -148,7 +176,7 @@
 </head>
 <body>
   <div class="floaties" id="floaties"></div>
-  <button class="theme-btn" id="themeBtn" title="Mode gelap">🌙</button>
+  <button class="theme-btn" id="themeBtn" title="Mode gelap" aria-label="Ganti mode gelap/terang">🌙</button>
 
   <div id="intro">
     <div class="gift">🎁</div>
@@ -167,7 +195,7 @@
       <button class="shuffle" id="shuffle"><span>💭</span> Quote lain</button>
     </header>
 
-    <div class="cake-scene" id="cakeScene">
+    <div class="cake-scene" id="cakeScene" role="button" tabindex="0" aria-label="Tiup lilin kue ulang tahun">
       <div class="cake" id="cake">
         <div class="flame"></div>
         <div class="candle"></div>
@@ -180,10 +208,12 @@
 
     <nav>
       <a href="#progress">📊 Progress</a>
+      <a href="#milestone">🎁 Hadiah</a>
       <a href="#prayer">🕌 Solat</a>
       <a href="#checklist">🌸 Checklist</a>
       <a href="#water">💧 Air</a>
       <a href="#mood">😊 Mood</a>
+      <a href="#moodchart">📈 7 Hari</a>
       <a href="#journal">📝 Catatan</a>
       <a href="#pantangan">🚫 Pantangan</a>
       <a href="#boleh">✅ Boleh</a>
@@ -204,6 +234,11 @@
         <p id="progText">Yuk mulai centang kebiasaan baikmu 🌷</p>
         <div class="streak">🔥 <span id="streak">0</span> hari beruntun</div>
       </div>
+    </div>
+
+    <div class="card t-unlock" id="milestone">
+      <div class="sec-head"><div class="badge">🎁</div><div><h2>Hadiah Rahasia</h2><small>kebuka tiap kamu konsisten 🔥</small></div></div>
+      <div class="unlock-list" id="unlockList"></div>
     </div>
 
     <div class="card prayer" id="prayer">
@@ -230,6 +265,11 @@
       <div class="sec-head"><div class="badge">😊</div><div><h2>Mood Hari Ini</h2><small>gimana perasaanmu sekarang?</small></div></div>
       <div class="moods" id="moods"></div>
       <div class="mood-msg" id="moodMsg">Pilih salah satu ya 🌸</div>
+    </div>
+
+    <div class="card t-chart" id="moodchart">
+      <div class="sec-head"><div class="badge">📈</div><div><h2>Mood 7 Hari Terakhir</h2><small>biar keliatan progresnya 🌷</small></div></div>
+      <div class="mood-week" id="moodWeek"></div>
     </div>
 
     <div class="card t-note" id="journal">
@@ -289,6 +329,7 @@
   const $=id=>document.getElementById(id);
   const pad=n=>n<10?'0'+n:''+n;
   const days=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const daysShort=['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
   const months=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
   let prayTimes={}, curNext=null;
@@ -303,6 +344,15 @@
     'Kamu lebih kuat dari yang kamu kira. 💪',
     'Istirahat bukan males, itu bagian dari usaha. 😌',
     'Mulai dari yang gampang, sisanya nyusul. 🌷'
+  ];
+
+  // === Pesan milestone (generik, ga perlu ditulis) ===
+  const MILESTONES=[
+    {d:1,  t:'Hari Pertama',     msg:'Langkah pertama udah diambil. Itu yang tersusah! 🌸'},
+    {d:3,  t:'3 Hari Beruntun',  msg:'Tiga hari konsisten, keren! Pertahankan ya. 🔥'},
+    {d:7,  t:'1 Minggu',         msg:'Seminggu penuh! Kamu lagi di jalur yang benar. 🌷'},
+    {d:14, t:'2 Minggu',         msg:'Dua minggu! Ini udah mulai jadi kebiasaan. ✨'},
+    {d:30, t:'1 Bulan',          msg:'Sebulan penuh konsisten. Luar biasa! 🏆'}
   ];
 
   function todayKey(){const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
@@ -321,12 +371,14 @@
     }
   }
 
+  function setThemeColor(dark){ const m=$('themeColor'); if(m)m.setAttribute('content',dark?'#241320':'#e8467f'); }
+
   function initTheme(){
-    if((localStorage.getItem('novi_theme')||'light')==='dark'){document.documentElement.setAttribute('data-theme','dark');$('themeBtn').textContent='☀️';}
+    if((localStorage.getItem('novi_theme')||'light')==='dark'){document.documentElement.setAttribute('data-theme','dark');$('themeBtn').textContent='☀️';setThemeColor(true);}
     $('themeBtn').addEventListener('click',()=>{
       const dark=document.documentElement.getAttribute('data-theme')==='dark';
-      if(dark){document.documentElement.removeAttribute('data-theme');localStorage.setItem('novi_theme','light');$('themeBtn').textContent='🌙';}
-      else{document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('novi_theme','dark');$('themeBtn').textContent='☀️';}
+      if(dark){document.documentElement.removeAttribute('data-theme');localStorage.setItem('novi_theme','light');$('themeBtn').textContent='🌙';setThemeColor(false);}
+      else{document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('novi_theme','dark');$('themeBtn').textContent='☀️';setThemeColor(true);}
     });
   }
 
@@ -345,6 +397,14 @@
       localStorage.setItem('novi_date',TODAY);
       localStorage.setItem('novi_checks',JSON.stringify([]));
       localStorage.setItem('novi_water','0');
+    }
+  }
+
+  // BUG FIX: streak yang bolong sekarang jujur reset ke 0
+  function syncStreak(){
+    const last=localStorage.getItem('novi_lastdone')||'';
+    if(last!==TODAY && last!==yesterdayKey()){
+      localStorage.setItem('novi_streak','0');
     }
   }
 
@@ -461,7 +521,29 @@
       streak=(last===yesterdayKey())?streak+1:1;
       localStorage.setItem('novi_streak',streak);
       localStorage.setItem('novi_lastdone',TODAY);
+      if(streak>parseInt(localStorage.getItem('novi_beststreak')||'0')) localStorage.setItem('novi_beststreak',streak);
+      if(MILESTONES.some(function(m){return m.d===streak;})){ celebrate(); }
+      initMilestones();
     }
+    $('streak').textContent=localStorage.getItem('novi_streak')||'0';
+  }
+
+  // === Milestone / hadiah rahasia ===
+  function bestStreak(){
+    return Math.max(parseInt(localStorage.getItem('novi_streak')||'0'), parseInt(localStorage.getItem('novi_beststreak')||'0'));
+  }
+  function initMilestones(){
+    const wrap=$('unlockList'); if(!wrap)return; wrap.innerHTML='';
+    const best=bestStreak();
+    MILESTONES.forEach(function(m){
+      const unlocked=best>=m.d;
+      const it=document.createElement('div'); it.className='unlock-item '+(unlocked?'unlocked':'locked');
+      const ic=document.createElement('div'); ic.className='ic'; ic.textContent=unlocked?'💌':'🔒';
+      const uc=document.createElement('div'); uc.className='uc';
+      const h=document.createElement('h3'); h.textContent=m.t+' · '+m.d+' hari';
+      const p=document.createElement('p'); p.textContent=unlocked?m.msg:('Kebuka kalau streak-mu sampai '+m.d+' hari. Semangat! 🔥');
+      uc.appendChild(h); uc.appendChild(p); it.appendChild(ic); it.appendChild(uc); wrap.appendChild(it);
+    });
   }
 
   function initWater(){
@@ -469,8 +551,12 @@
     water=parseInt(localStorage.getItem('novi_water')||'0');
     for(let i=0;i<8;i++){
       const g=document.createElement('div'); g.className='glass';
+      g.setAttribute('role','button'); g.setAttribute('tabindex','0'); g.setAttribute('aria-label','Gelas air ke-'+(i+1));
       const f=document.createElement('div'); f.className='fill'; g.appendChild(f);
-      (function(idx){ g.addEventListener('click',function(){ water=(water===idx+1)?idx:idx+1; localStorage.setItem('novi_water',water); renderWater(false); }); })(i);
+      (function(idx){
+        g.addEventListener('click',function(){ water=(water===idx+1)?idx:idx+1; localStorage.setItem('novi_water',water); renderWater(false); });
+        g.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); g.click(); } });
+      })(i);
       glasses.appendChild(g);
     }
     renderWater(true);
@@ -483,22 +569,38 @@
     if(water>=8){ if(!initial && !waterCelebrated)celebrate(); waterCelebrated=true; } else { waterCelebrated=false; }
   }
 
+  function moodKey(d){ return 'novi_mood_'+d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+
   function initMood(){
     const moods=[['😄','Senang'],['🙂','Oke'],['😐','Biasa'],['😔','Sedih'],['😣','Capek']];
     const wrap=$('moods'); const key='novi_mood_'+TODAY;
     const saved=localStorage.getItem(key);
     if(saved){ const m=moods.find(x=>x[0]===saved); if(m)$('moodMsg').textContent='Mood hari ini: '+m[1]+' '+m[0]; }
     moods.forEach(function(m){
-      const b=document.createElement('button'); b.className='mood-btn'; b.textContent=m[0]; b.title=m[1];
+      const b=document.createElement('button'); b.className='mood-btn'; b.textContent=m[0]; b.title=m[1]; b.setAttribute('aria-label','Mood: '+m[1]);
       if(saved===m[0])b.classList.add('active');
       b.addEventListener('click',function(){
         localStorage.setItem(key,m[0]);
         const all=wrap.children; for(let i=0;i<all.length;i++)all[i].classList.remove('active');
         b.classList.add('active');
         $('moodMsg').textContent='Mood hari ini: '+m[1]+' '+m[0];
+        initMoodChart();
       });
       wrap.appendChild(b);
     });
+  }
+
+  // === Grafik mood 7 hari terakhir ===
+  function initMoodChart(){
+    const wrap=$('moodWeek'); if(!wrap)return; wrap.innerHTML='';
+    for(let i=6;i>=0;i--){
+      const d=new Date(); d.setDate(d.getDate()-i);
+      const em=localStorage.getItem(moodKey(d));
+      const col=document.createElement('div'); col.className='mood-day'+(i===0?' today':'');
+      const e=document.createElement('span'); e.className='em'+(em?'':' empty'); e.textContent=em||'·';
+      const l=document.createElement('span'); l.className='dl'; l.textContent=daysShort[d.getDay()];
+      col.appendChild(e); col.appendChild(l); wrap.appendChild(col);
+    }
   }
 
   function initJournal(){
@@ -513,12 +615,14 @@
   }
 
   function initCake(){
-    $('cakeScene').addEventListener('click',function(){
+    function toggleCake(){
       blown=!blown;
       $('cake').classList.toggle('blown',blown);
       if(blown){ $('wish').textContent='Make a wish! ✨ Selamat ulang tahun, Novi! 🎂'; celebrate(); }
       else { $('wish').textContent='Tap kuenya buat tiup lilin 🎂'; }
-    });
+    }
+    $('cakeScene').addEventListener('click',toggleCake);
+    $('cakeScene').addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleCake(); } });
   }
 
   function initFloaties(){
@@ -554,7 +658,7 @@
     const links=document.querySelectorAll('nav a');
     const map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
     const io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); if(map[e.target.id])map[e.target.id].classList.add('active'); } }); },{rootMargin:'-45% 0px -50% 0px'});
-    ['progress','prayer','checklist','water','mood','journal','pantangan','boleh','goals'].forEach(function(id){ const el=$(id); if(el)io.observe(el); });
+    ['progress','milestone','prayer','checklist','water','mood','moodchart','journal','pantangan','boleh','goals'].forEach(function(id){ const el=$(id); if(el)io.observe(el); });
   }
 
   function initIntro(){
@@ -564,10 +668,13 @@
 
   initTheme();
   dailyReset();
+  syncStreak();
   initQuote();
+  initMilestones();
   initChecklist();
   initWater();
   initMood();
+  initMoodChart();
   initJournal();
   initCake();
   initPrayer();
@@ -580,6 +687,11 @@
   setInterval(function(){ if(document.hidden)return; updateClock(); updateCountdown(); },1000);
   document.addEventListener('visibilitychange',function(){ document.body.classList.toggle('paused',document.hidden); if(!document.hidden){updateClock();updateCountdown();} });
 })();
+
+// === PWA: daftarkan service worker ===
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+}
 </script>
 </body>
 </html>
