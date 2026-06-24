@@ -55,6 +55,10 @@
   .theme-btn{width:42px;height:42px;border:none;border-radius:50%;cursor:pointer;font-size:19px;background:var(--item);color:var(--ink);transition:transform .15s,background .2s;}
   .theme-btn:hover{transform:translateY(-2px);}
   .theme-btn:active{transform:scale(.9);}
+  .tb-r{display:flex;align-items:center;gap:9px;}
+  .install-btn{display:none;align-items:center;gap:5px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;color:#fff;background:var(--grad);padding:9px 13px;border-radius:999px;box-shadow:0 5px 14px rgba(196,78,217,.4);transition:transform .15s;white-space:nowrap;}
+  .install-btn.show{display:inline-flex;}
+  .install-btn:active{transform:scale(.93);}
 
   .wrap{position:relative;z-index:5;max-width:620px;margin:0 auto;padding:16px 18px 8px;}
   .view{display:none;}
@@ -240,6 +244,15 @@
   .tab.active{color:#fff;background:var(--grad);box-shadow:0 5px 14px rgba(196,78,217,.4);}
   .tab.active .ti{transform:translateY(-1px) scale(1.05);}
 
+  .install-sheet{position:fixed;inset:0;z-index:95;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.4);}
+  .install-sheet.show{display:flex;animation:fadeBg .25s;}
+  @keyframes fadeBg{from{opacity:0}to{opacity:1}}
+  .install-sheet .sheet{width:100%;max-width:440px;background:linear-gradient(160deg,var(--bg1),var(--bg2));border:1px solid var(--cardbd);border-radius:24px 24px 0 0;padding:24px 22px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.25);animation:sheetUp .3s cubic-bezier(.22,.61,.36,1);}
+  .install-sheet h3{font-family:'Playfair Display',serif;color:var(--rose-d);font-size:19px;margin-bottom:12px;}
+  .install-sheet ol{margin:0 0 18px 18px;color:var(--ink);font-size:14px;line-height:1.75;}
+  .install-sheet ol b{color:var(--rose-d);}
+  .install-sheet .close{width:100%;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;color:#fff;background:var(--grad);padding:12px;border-radius:14px;}
+  @keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
   body.paused .floaty,body.paused .butterfly,body.paused .flame,body.paused .aurora{animation-play-state:paused;}
   @media (prefers-reduced-motion: reduce){.floaty,.butterfly,.flame,#intro .gift,.aurora,.view.active,.view.active>*,.skeleton::after{animation:none!important;}*{transition-duration:.001s!important;}}
 </style>
@@ -260,7 +273,10 @@
       <span class="greet" id="greet">Selamat datang 🌸</span>
       <span class="clock" id="clock">00:00:00</span>
     </div>
-    <button class="theme-btn" id="themeBtn" title="Mode gelap" aria-label="Ganti mode gelap/terang">🌙</button>
+    <div class="tb-r">
+      <button class="install-btn" id="installBtn" aria-label="Install aplikasi"><span>📲</span> Install</button>
+      <button class="theme-btn" id="themeBtn" title="Mode gelap" aria-label="Ganti mode gelap/terang">🌙</button>
+    </div>
   </header>
 
   <div class="wrap">
@@ -438,6 +454,14 @@
     <button class="tab" data-tab="sehat" aria-selected="false"><span class="ti">💪</span><span class="tl">Sehat</span></button>
     <button class="tab" data-tab="catatan" aria-selected="false"><span class="ti">📓</span><span class="tl">Catatan</span></button>
   </nav>
+
+  <div class="install-sheet" id="installSheet">
+    <div class="sheet">
+      <h3>📲 Pasang ke Layar Utama</h3>
+      <div id="installSteps"></div>
+      <button class="close" id="installClose">Oke, ngerti 🌸</button>
+    </div>
+  </div>
 
 <script>
 (function(){
@@ -1003,6 +1027,32 @@
     show('home');
   }
 
+  function isStandalone(){ return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone===true; }
+  function isIOS(){ return /iphone|ipad|ipod/i.test(navigator.userAgent); }
+  function initInstall(){
+    const btn=$('installBtn'), sheet=$('installSheet'), steps=$('installSteps'), close=$('installClose');
+    if(!btn) return;
+    if(isStandalone()) return;
+    let deferred=null;
+    window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); deferred=e; btn.classList.add('show'); });
+    if(isIOS()) btn.classList.add('show');
+    function openSheet(html){ steps.innerHTML=html; sheet.classList.add('show'); }
+    function closeSheet(){ sheet.classList.remove('show'); }
+    btn.addEventListener('click',function(){
+      if(deferred){
+        deferred.prompt();
+        deferred.userChoice.then(function(c){ if(c&&c.outcome==='accepted') btn.classList.remove('show'); deferred=null; });
+      } else if(isIOS()){
+        openSheet('<ol><li>Tap tombol <b>Share</b> (kotak + panah ke atas) di bar bawah Safari.</li><li>Scroll lalu pilih <b>Add to Home Screen</b>.</li><li>Tap <b>Add</b> di pojok kanan atas.</li></ol>');
+      } else {
+        openSheet('<ol><li>Buka menu browser (ikon <b>⋮</b> di pojok).</li><li>Pilih <b>Install app</b> / <b>Add to Home screen</b>.</li><li>Konfirmasi <b>Install</b>.</li></ol>');
+      }
+    });
+    close.addEventListener('click',closeSheet);
+    sheet.addEventListener('click',function(e){ if(e.target===sheet) closeSheet(); });
+    window.addEventListener('appinstalled',function(){ btn.classList.remove('show'); closeSheet(); celebrate(); buzz([30,50,30]); });
+  }
+
   function initIntro(){
     const intro=$('intro'); intro.style.display='flex';
     intro.addEventListener('click',function(){ intro.classList.add('hide'); celebrate(); setTimeout(function(){ intro.style.display='none'; },600); },{once:true});
@@ -1026,6 +1076,7 @@
   initFloaties();
   initTabs();
   initIntro();
+  initInstall();
   updateClock();
   updateCountdown();
   setInterval(function(){ if(document.hidden)return; updateClock(); updateCountdown(); },1000);
