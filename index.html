@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Selamat Ulang Tahun, Novina 🎂</title>
 <meta name="theme-color" id="themeColor" content="#e8467f">
 <meta name="description" content="Sesuatu yang dibuat khusus buat Novi 🌸 — buka tiap hari ya.">
@@ -18,48 +18,60 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--rose:#e8467f;--rose-d:#c9356a;--pink:#ff8fb4;--bg1:#fff2f8;--bg2:#ffe2ee;--ink:#5a2740;--muted:#9b6a82;--card:rgba(255,255,255,.9);--item:rgba(232,70,127,.07);--navbg:rgba(255,255,255,.92);--cardbd:rgba(232,70,127,.12);--ring:#ffe0ec;}
-  [data-theme="dark"]{--rose:#ff86b0;--rose-d:#ffa6c7;--pink:#ff8fb4;--bg1:#241320;--bg2:#120a10;--ink:#f6dde9;--muted:#c49bb0;--card:rgba(40,22,34,.92);--item:rgba(255,255,255,.06);--navbg:rgba(40,22,34,.94);--cardbd:rgba(255,255,255,.1);--ring:rgba(255,255,255,.13);}
+  :root{--rose:#e8467f;--rose-d:#c9356a;--pink:#ff8fb4;--bg1:#fff5fa;--bg2:#ffe9f2;--ink:#4a2236;--muted:#9b6a82;--card:rgba(255,255,255,.72);--cardbd:rgba(232,70,127,.14);--glass:rgba(255,255,255,.8);--item:rgba(232,70,127,.06);--ring:#ffe0ec;--grad:linear-gradient(135deg,#ff6fa5,#c44ed9);--shadow:0 10px 30px rgba(214,51,108,.12);}
+  [data-theme="dark"]{--rose:#ff86b0;--rose-d:#ffb3cf;--pink:#ff8fb4;--bg1:#1b0f18;--bg2:#120a10;--ink:#f6dde9;--muted:#c49bb0;--card:rgba(42,24,36,.6);--cardbd:rgba(255,255,255,.08);--glass:rgba(30,16,26,.74);--item:rgba(255,255,255,.05);--ring:rgba(255,255,255,.12);--shadow:0 12px 32px rgba(0,0,0,.45);}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html{scroll-behavior:smooth;}
-  body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;background:linear-gradient(160deg,var(--bg1),var(--bg2));position:relative;transition:background .4s,color .4s;}
-  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 12% 10%,rgba(255,179,209,.55),transparent 42%),radial-gradient(circle at 88% 18%,rgba(217,167,255,.5),transparent 42%),radial-gradient(circle at 50% 95%,rgba(255,214,165,.45),transparent 45%);}
-  [data-theme="dark"] body::before{background:radial-gradient(circle at 12% 10%,rgba(255,134,176,.16),transparent 42%),radial-gradient(circle at 88% 18%,rgba(150,110,200,.16),transparent 42%);}
+  body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;background:linear-gradient(160deg,var(--bg1),var(--bg2));position:relative;transition:background .4s,color .4s;padding-bottom:100px;}
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 12% 8%,rgba(255,179,209,.5),transparent 40%),radial-gradient(circle at 88% 14%,rgba(217,167,255,.45),transparent 42%),radial-gradient(circle at 50% 98%,rgba(255,214,165,.4),transparent 45%);}
+  [data-theme="dark"] body::before{background:radial-gradient(circle at 12% 8%,rgba(255,134,176,.14),transparent 40%),radial-gradient(circle at 88% 14%,rgba(150,110,200,.16),transparent 42%);}
 
   .floaties{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
-  .floaty{position:absolute;bottom:-50px;animation:rise linear infinite;opacity:.55;}
-  @keyframes rise{0%{transform:translateY(0);opacity:0}12%{opacity:.55}88%{opacity:.55}100%{transform:translateY(-112vh);opacity:0}}
+  .floaty{position:absolute;bottom:-50px;animation:rise linear infinite;opacity:.5;}
+  @keyframes rise{0%{transform:translateY(0);opacity:0}12%{opacity:.5}88%{opacity:.5}100%{transform:translateY(-112vh);opacity:0}}
   .butterfly{position:fixed;z-index:2;pointer-events:none;animation:fly 20s linear infinite;}
   .butterfly span{display:inline-block;animation:flap .34s ease-in-out infinite;}
   @keyframes flap{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.4)}}
   @keyframes fly{0%{transform:translate(-12vw,84vh)}50%{transform:translate(56vw,40vh)}100%{transform:translate(114vw,70vh)}}
 
-  #intro{display:none;position:fixed;inset:0;z-index:50;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(160deg,#ffd9e8,#f6c8ff);transition:opacity .55s;cursor:pointer;text-align:center;padding:24px;}
+  #intro{display:none;position:fixed;inset:0;z-index:90;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(160deg,#ffd9e8,#f6c8ff);transition:opacity .55s;cursor:pointer;text-align:center;padding:24px;}
   [data-theme="dark"] #intro{background:linear-gradient(160deg,#2a1622,#241433);}
   #intro.hide{opacity:0;pointer-events:none;}
   #intro .gift{font-size:88px;animation:bob 2s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-  #intro h2{font-family:'Playfair Display',serif;font-size:27px;color:var(--rose-d);}
-  #intro p{color:var(--muted);font-size:14px;}
+  #intro h2{font-family:'Playfair Display',serif;font-size:27px;color:#c9356a;}
+  #intro p{color:#9b6a82;font-size:14px;}
 
-  .theme-btn{position:fixed;bottom:20px;right:18px;z-index:45;width:50px;height:50px;border:none;border-radius:50%;cursor:pointer;font-size:22px;background:var(--navbg);box-shadow:0 6px 18px rgba(214,51,108,.28);transition:transform .15s,box-shadow .2s;}
-  .theme-btn:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(214,51,108,.36);}
-  .theme-btn:active{transform:scale(.92);}
+  .topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 18px;background:var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--cardbd);}
+  .topbar .tb-l{display:flex;flex-direction:column;line-height:1.15;}
+  .topbar .greet{font-size:12px;color:var(--rose);font-weight:600;}
+  .topbar .clock{font-size:21px;font-weight:800;color:var(--rose-d);font-variant-numeric:tabular-nums;letter-spacing:1px;}
+  .theme-btn{width:42px;height:42px;border:none;border-radius:50%;cursor:pointer;font-size:19px;background:var(--item);color:var(--ink);transition:transform .15s,background .2s;}
+  .theme-btn:hover{transform:translateY(-2px);}
+  .theme-btn:active{transform:scale(.9);}
 
-  .wrap{position:relative;z-index:5;max-width:640px;margin:0 auto;padding:36px 20px 80px;}
-  header{text-align:center;margin-bottom:6px;}
-  .greet{font-size:14px;color:var(--rose);font-weight:600;letter-spacing:.5px;}
-  .clock{font-weight:700;font-size:38px;color:var(--rose-d);letter-spacing:2px;margin-top:2px;font-variant-numeric:tabular-nums;}
-  .today{font-size:13px;color:var(--muted);margin-bottom:16px;}
-  .eyebrow{letter-spacing:3px;text-transform:uppercase;font-size:11px;color:var(--rose);font-weight:600;}
-  h1{font-family:'Playfair Display',serif;font-size:38px;line-height:1.15;color:var(--rose-d);margin:6px 0;}
-  h1 .nm{display:block;background:linear-gradient(90deg,#ff6fa5,#c44ed9);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .tagline{font-style:italic;color:var(--muted);font-size:14px;margin:12px auto 0;max-width:430px;min-height:38px;}
-  .shuffle{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:linear-gradient(135deg,#ff8fb4,#c44ed9);color:#fff;border:none;font-weight:600;font-size:13px;padding:10px 20px;border-radius:999px;cursor:pointer;box-shadow:0 6px 16px rgba(196,78,217,.35);transition:transform .15s,box-shadow .2s;}
-  .shuffle:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(196,78,217,.45);}
+  .wrap{position:relative;z-index:5;max-width:620px;margin:0 auto;padding:16px 18px 8px;}
+  .view{display:none;}
+  .view.active{display:block;}
+  .view.active > *{animation:cardUp .45s both;}
+  .view.active > *:nth-child(1){animation-delay:0s}
+  .view.active > *:nth-child(2){animation-delay:.05s}
+  .view.active > *:nth-child(3){animation-delay:.1s}
+  .view.active > *:nth-child(4){animation-delay:.15s}
+  .view.active > *:nth-child(5){animation-delay:.2s}
+  @keyframes cardUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+  .hero{text-align:center;padding:14px 6px 2px;}
+  .eyebrow{letter-spacing:3px;text-transform:uppercase;font-size:11px;color:var(--rose);font-weight:700;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:33px;line-height:1.12;color:var(--rose-d);margin:8px 0;}
+  .hero h1 .nm{display:block;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .today{font-size:13px;color:var(--muted);margin-top:4px;}
+  .tagline{font-style:italic;color:var(--muted);font-size:14px;margin:12px auto 0;max-width:420px;min-height:40px;}
+  .shuffle{display:inline-flex;align-items:center;gap:7px;margin-top:12px;background:var(--grad);color:#fff;border:none;font-weight:600;font-size:13px;padding:9px 18px;border-radius:999px;cursor:pointer;box-shadow:0 6px 16px rgba(196,78,217,.35);transition:transform .15s,box-shadow .2s;}
+  .shuffle:hover{transform:translateY(-2px);}
   .shuffle:active{transform:scale(.95);}
 
-  .cake-scene{display:flex;flex-direction:column;align-items:center;margin:36px 0 10px;cursor:pointer;user-select:none;}
+  .cake-scene{display:flex;flex-direction:column;align-items:center;margin:22px 0 6px;cursor:pointer;user-select:none;}
   .cake-scene:focus-visible{outline:3px solid var(--rose);outline-offset:6px;border-radius:18px;}
   .cake{position:relative;width:180px;height:172px;}
   .flame{position:absolute;left:50%;bottom:148px;transform:translateX(-50%);width:16px;height:23px;background:radial-gradient(circle at 50% 78%,#fff7c2 0%,#ffd24a 38%,#ff7a1a 74%,#ff4d2e 100%);border-radius:50% 50% 50% 50%/64% 64% 38% 38%;box-shadow:0 0 20px 5px rgba(255,170,40,.6);transform-origin:50% 92%;animation:flicker 1.3s ease-in-out infinite;transition:opacity .4s,transform .4s;z-index:4;}
@@ -73,26 +85,12 @@
   .tier .icing{position:absolute;left:-3px;right:-3px;top:-9px;height:18px;background:#fff;border-radius:12px;box-shadow:0 2px 3px rgba(214,51,108,.1);}
   .tier .icing::after{content:'';position:absolute;left:0;right:0;bottom:-7px;height:12px;background:radial-gradient(circle at 9px 0,#fff 7px,transparent 8px);background-size:18px 12px;background-repeat:repeat-x;}
   .plate{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:178px;height:16px;background:radial-gradient(ellipse at 50% 35%,#ffffff,#ffd2e2);border-radius:50%;box-shadow:0 10px 20px rgba(214,51,108,.2);z-index:0;}
-  .wish{margin-top:16px;font-size:13.5px;color:var(--muted);font-weight:500;text-align:center;}
+  .wish{margin-top:12px;font-size:13px;color:var(--muted);font-weight:500;text-align:center;}
 
-  /* Bar progress baca tipis di paling atas */
-  .scroll-prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,#ff6fa5,#c44ed9);box-shadow:0 0 8px rgba(196,78,217,.45);border-radius:0 3px 3px 0;will-change:width;}
-
-  /* Menu sticky: cukup 1 baris, scroll horizontal, hemat layar */
-  nav{position:sticky;top:8px;z-index:20;display:flex;gap:7px;flex-wrap:nowrap;overflow-x:auto;scroll-behavior:smooth;margin:20px 0;padding:4px 2px;-webkit-overflow-scrolling:touch;scrollbar-width:none;-webkit-mask:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s;}
-  nav.nav-hidden{transform:translateY(-165%);opacity:0;pointer-events:none;}
-  nav::-webkit-scrollbar{display:none;}
-  nav a{flex:none;white-space:nowrap;font-size:12.5px;font-weight:600;text-decoration:none;color:var(--rose-d);background:var(--navbg);padding:8px 14px;border-radius:999px;box-shadow:0 3px 10px rgba(214,51,108,.12);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .25s,color .25s,transform .18s,box-shadow .25s;}
-  nav a:hover{transform:translateY(-2px);}
-  nav a:active{transform:scale(.94);}
-  nav a.active{background:linear-gradient(135deg,#ff6fa5,#c44ed9);color:#fff;box-shadow:0 5px 14px rgba(196,78,217,.4);transform:translateY(-1px);}
-
-  .card{background:var(--card);border-radius:24px;padding:24px 22px;margin:18px 0;box-shadow:0 10px 26px rgba(214,51,108,.12);border:1px solid var(--cardbd);}
-  body.reveal-ready .card{opacity:0;transform:translateY(22px);transition:opacity .5s,transform .5s;}
-  body.reveal-ready .card.in{opacity:1;transform:none;}
-  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
-  .badge{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;flex:none;}
-  .sec-head h2{font-size:19px;font-weight:700;line-height:1.25;color:var(--rose-d);}
+  .card{background:var(--card);border-radius:22px;padding:22px 20px;margin:16px 0;box-shadow:var(--shadow);border:1px solid var(--cardbd);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);}
+  .sec-head{display:flex;align-items:center;gap:13px;margin-bottom:15px;}
+  .badge{width:46px;height:46px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:23px;flex:none;}
+  .sec-head h2{font-size:18px;font-weight:700;line-height:1.25;color:var(--rose-d);}
   .sec-head small{display:block;font-size:12px;color:var(--muted);font-weight:500;margin-top:2px;}
 
   .prog{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;}
@@ -107,7 +105,7 @@
   .streak{display:inline-block;background:#fff0d6;color:#c9852a;font-weight:600;font-size:13px;padding:5px 12px;border-radius:999px;}
 
   .prayer .badge{background:#e7e0ff;}
-  .next-pray{display:flex;justify-content:space-between;align-items:center;gap:10px;background:linear-gradient(135deg,#ff6fa5,#c44ed9);color:#fff;border-radius:16px;padding:14px 18px;margin-bottom:14px;}
+  .next-pray{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--grad);color:#fff;border-radius:16px;padding:14px 18px;margin-bottom:14px;}
   .next-pray .nl{font-size:13px;opacity:.92;}
   .next-pray .nl b{font-size:16px;}
   .next-pray .countdown{font-size:25px;font-weight:800;font-variant-numeric:tabular-nums;}
@@ -148,14 +146,12 @@
   .mood-btn.active{border-color:var(--rose);background:linear-gradient(135deg,#fff0d6,#ffe0ec);transform:translateY(-3px) scale(1.05);}
   .mood-msg{text-align:center;margin-top:12px;font-size:13.5px;color:var(--muted);}
 
-  /* === Kotak catatan === */
   .t-note .badge{background:#ffe6f0;}
   .journal{display:block;width:100%;box-sizing:border-box;min-height:150px;line-height:1.6;border:1px solid var(--cardbd);border-radius:16px;background:var(--item);color:var(--ink);font-family:inherit;font-size:14px;padding:14px 16px;resize:vertical;outline:none;transition:border-color .2s,box-shadow .2s;}
   .journal:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(232,70,127,.15);}
   .journal::placeholder{color:var(--muted);opacity:.85;}
   .note-saved{text-align:right;font-size:12px;color:#36b37e;font-weight:600;margin-top:6px;min-height:16px;}
 
-  /* === Grafik mood 7 hari === */
   .t-chart .badge{background:#e0f0ff;}
   .mood-week{display:flex;gap:7px;justify-content:space-between;}
   .mood-day{flex:1;text-align:center;background:var(--item);border-radius:13px;padding:11px 3px;}
@@ -164,7 +160,6 @@
   .mood-day .dl{font-size:10.5px;color:var(--muted);font-weight:600;margin-top:4px;}
   .mood-day.today{box-shadow:0 0 0 2px var(--rose) inset;}
 
-  /* === Milestone / hadiah rahasia === */
   .t-unlock .badge{background:#ffe7f1;}
   .unlock-item{display:flex;gap:12px;align-items:flex-start;background:var(--item);border-radius:14px;padding:13px 15px;margin:9px 0;transition:.25s;}
   .unlock-item .ic{flex:none;width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--ring);}
@@ -184,17 +179,22 @@
   .t-yes .badge{background:#dff5e5;} .t-yes ol.list li::before{background:#36b37e;} .t-yes .sec-head h2{color:#1f9d68;}
   .t-goal .badge{background:#fff0d6;} .t-goal ol.list li::before{background:#e8a13a;} .t-goal .sec-head h2{color:#c9852a;}
   .quote{font-style:italic;color:var(--muted);font-size:14px;margin-bottom:12px;padding-left:12px;border-left:3px solid var(--pink);}
-  footer{text-align:center;margin-top:30px;color:var(--muted);font-size:14px;line-height:1.7;}
+  footer{text-align:center;margin-top:24px;color:var(--muted);font-size:14px;line-height:1.7;}
   footer .big{font-family:'Playfair Display',serif;font-size:20px;color:var(--rose-d);}
 
+  .tabbar{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:50;display:flex;gap:4px;padding:6px;background:var(--glass);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--cardbd);border-radius:999px;box-shadow:0 8px 26px rgba(214,51,108,.18);width:calc(100% - 28px);max-width:440px;}
+  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:transparent;cursor:pointer;padding:8px 4px;border-radius:999px;color:var(--muted);font-family:inherit;font-size:10.5px;font-weight:600;transition:color .2s,background .25s,transform .15s;}
+  .tab .ti{font-size:20px;line-height:1;transition:transform .2s;}
+  .tab:active{transform:scale(.92);}
+  .tab.active{color:#fff;background:var(--grad);box-shadow:0 5px 14px rgba(196,78,217,.4);}
+  .tab.active .ti{transform:translateY(-1px) scale(1.05);}
+
   body.paused .floaty,body.paused .butterfly,body.paused .flame{animation-play-state:paused;}
-  @media (prefers-reduced-motion: reduce){.floaty,.butterfly,.flame,#intro .gift{animation:none!important;}*{transition-duration:.001s!important;}}
+  @media (prefers-reduced-motion: reduce){.floaty,.butterfly,.flame,#intro .gift,.view.active>*{animation:none!important;}*{transition-duration:.001s!important;}}
 </style>
 </head>
 <body>
   <div class="floaties" id="floaties"></div>
-  <div class="scroll-prog" id="scrollProg" aria-hidden="true"></div>
-  <button class="theme-btn" id="themeBtn" title="Mode gelap" aria-label="Ganti mode gelap/terang">🌙</button>
 
   <div id="intro">
     <div class="gift">🎁</div>
@@ -202,144 +202,153 @@
     <p>tap di mana aja buat buka 👆</p>
   </div>
 
+  <header class="topbar">
+    <div class="tb-l">
+      <span class="greet" id="greet">Selamat datang 🌸</span>
+      <span class="clock" id="clock">00:00:00</span>
+    </div>
+    <button class="theme-btn" id="themeBtn" title="Mode gelap" aria-label="Ganti mode gelap/terang">🌙</button>
+  </header>
+
   <div class="wrap">
-    <header>
-      <div class="greet" id="greet">Selamat datang 🌸</div>
-      <div class="clock" id="clock">00:00:00</div>
-      <div class="today" id="today">—</div>
-      <div class="eyebrow">24 Juni · Hari Spesial</div>
-      <h1>Selamat Ulang Tahun<span class="nm">Novina Suci Bidariyati 🌸</span></h1>
-      <p class="tagline" id="quote">...</p>
-      <button class="shuffle" id="shuffle"><span>💭</span> Quote lain</button>
-    </header>
 
-    <div class="cake-scene" id="cakeScene" role="button" tabindex="0" aria-label="Tiup lilin kue ulang tahun">
-      <div class="cake" id="cake">
-        <div class="flame"></div>
-        <div class="candle"></div>
-        <div class="tier tier-top"><span class="icing"></span></div>
-        <div class="tier tier-base"><span class="icing"></span></div>
-        <div class="plate"></div>
+    <section class="view" id="view-home">
+      <div class="hero">
+        <div class="eyebrow">24 Juni · Hari Spesial</div>
+        <h1>Selamat Ulang Tahun<span class="nm">Novina Suci Bidariyati 🌸</span></h1>
+        <div class="today" id="today">—</div>
+        <p class="tagline" id="quote">...</p>
+        <button class="shuffle" id="shuffle"><span>💭</span> Quote lain</button>
       </div>
-      <div class="wish" id="wish">Tap kuenya buat tiup lilin 🎂</div>
-    </div>
 
-    <nav>
-      <a href="#progress">📊 Progress</a>
-      <a href="#milestone">🎁 Hadiah</a>
-      <a href="#prayer">🕌 Solat</a>
-      <a href="#checklist">🌸 Checklist</a>
-      <a href="#water">💧 Air</a>
-      <a href="#mood">😊 Mood</a>
-      <a href="#moodchart">📈 7 Hari</a>
-      <a href="#journal">📝 Catatan</a>
-      <a href="#pantangan">🚫 Pantangan</a>
-      <a href="#boleh">✅ Boleh</a>
-      <a href="#goals">🎯 Goals</a>
-    </nav>
-
-    <div class="card prog" id="progress">
-      <div class="ring-wrap">
-        <svg viewBox="0 0 120 120" width="120" height="120">
-          <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6fa5"/><stop offset="1" stop-color="#c44ed9"/></linearGradient></defs>
-          <circle class="ring-bg" cx="60" cy="60" r="52"/>
-          <circle class="ring-fg" id="ring" cx="60" cy="60" r="52"/>
-        </svg>
-        <div class="ring-pct" id="ringPct">0%</div>
+      <div class="cake-scene" id="cakeScene" role="button" tabindex="0" aria-label="Tiup lilin kue ulang tahun">
+        <div class="cake" id="cake">
+          <div class="flame"></div>
+          <div class="candle"></div>
+          <div class="tier tier-top"><span class="icing"></span></div>
+          <div class="tier tier-base"><span class="icing"></span></div>
+          <div class="plate"></div>
+        </div>
+        <div class="wish" id="wish">Tap kuenya buat tiup lilin 🎂</div>
       </div>
-      <div class="prog-info">
-        <h2>Progress Hari Ini</h2>
-        <p id="progText">Yuk mulai centang kebiasaan baikmu 🌷</p>
-        <div class="streak">🔥 <span id="streak">0</span> hari beruntun</div>
+
+      <div class="card prog" id="progress">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120" width="120" height="120">
+            <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6fa5"/><stop offset="1" stop-color="#c44ed9"/></linearGradient></defs>
+            <circle class="ring-bg" cx="60" cy="60" r="52"/>
+            <circle class="ring-fg" id="ring" cx="60" cy="60" r="52"/>
+          </svg>
+          <div class="ring-pct" id="ringPct">0%</div>
+        </div>
+        <div class="prog-info">
+          <h2>Progress Hari Ini</h2>
+          <p id="progText">Yuk mulai centang kebiasaan baikmu 🌷</p>
+          <div class="streak">🔥 <span id="streak">0</span> hari beruntun</div>
+        </div>
       </div>
-    </div>
 
-    <div class="card t-unlock" id="milestone">
-      <div class="sec-head"><div class="badge">🎁</div><div><h2>Hadiah Rahasia</h2><small>kebuka tiap kamu konsisten 🔥</small></div></div>
-      <div class="unlock-list" id="unlockList"></div>
-    </div>
-
-    <div class="card prayer" id="prayer">
-      <div class="sec-head"><div class="badge">🕌</div><div><h2>Jadwal Solat Hari Ini</h2><small id="praycity">memuat lokasi...</small></div></div>
-      <div class="next-pray">
-        <div class="nl">Menuju <b id="nextName">—</b></div>
-        <div class="countdown" id="countdown">--:--:--</div>
+      <div class="card t-unlock" id="milestone">
+        <div class="sec-head"><div class="badge">🎁</div><div><h2>Hadiah Rahasia</h2><small>kebuka tiap kamu konsisten 🔥</small></div></div>
+        <div class="unlock-list" id="unlockList"></div>
       </div>
-      <div class="pray-grid" id="prayGrid"></div>
-    </div>
+    </section>
 
-    <div class="card t-do" id="checklist">
-      <div class="sec-head"><div class="badge">🌸</div><div><h2>Checklist Harian Novi</h2><small>centang tiap selesai · reset otomatis tiap hari</small></div></div>
-      <ul class="check" id="checkList"></ul>
-    </div>
+    <section class="view" id="view-ibadah">
+      <div class="card prayer" id="prayer">
+        <div class="sec-head"><div class="badge">🕌</div><div><h2>Jadwal Solat Hari Ini</h2><small id="praycity">memuat lokasi...</small></div></div>
+        <div class="next-pray">
+          <div class="nl">Menuju <b id="nextName">—</b></div>
+          <div class="countdown" id="countdown">--:--:--</div>
+        </div>
+        <div class="pray-grid" id="prayGrid"></div>
+      </div>
 
-    <div class="card t-water" id="water">
-      <div class="sec-head"><div class="badge">💧</div><div><h2>Tracker Air Putih</h2><small>target 2 liter · tap gelasnya</small></div></div>
-      <div class="glasses" id="glasses"></div>
-      <div class="water-info"><span id="waterText">0 / 8 gelas</span> · <span id="waterL">0 L</span></div>
-    </div>
+      <div class="card t-do" id="checklist">
+        <div class="sec-head"><div class="badge">🌸</div><div><h2>Checklist Harian Novi</h2><small>centang tiap selesai · reset otomatis tiap hari</small></div></div>
+        <ul class="check" id="checkList"></ul>
+      </div>
+    </section>
 
-    <div class="card t-mood" id="mood">
-      <div class="sec-head"><div class="badge">😊</div><div><h2>Mood Hari Ini</h2><small>gimana perasaanmu sekarang?</small></div></div>
-      <div class="moods" id="moods"></div>
-      <div class="mood-msg" id="moodMsg">Pilih salah satu ya 🌸</div>
-    </div>
+    <section class="view" id="view-sehat">
+      <div class="card t-water" id="water">
+        <div class="sec-head"><div class="badge">💧</div><div><h2>Tracker Air Putih</h2><small>target 2 liter · tap gelasnya</small></div></div>
+        <div class="glasses" id="glasses"></div>
+        <div class="water-info"><span id="waterText">0 / 8 gelas</span> · <span id="waterL">0 L</span></div>
+      </div>
 
-    <div class="card t-chart" id="moodchart">
-      <div class="sec-head"><div class="badge">📈</div><div><h2>Mood 7 Hari Terakhir</h2><small>biar keliatan progresnya 🌷</small></div></div>
-      <div class="mood-week" id="moodWeek"></div>
-    </div>
+      <div class="card t-mood" id="mood">
+        <div class="sec-head"><div class="badge">😊</div><div><h2>Mood Hari Ini</h2><small>gimana perasaanmu sekarang?</small></div></div>
+        <div class="moods" id="moods"></div>
+        <div class="mood-msg" id="moodMsg">Pilih salah satu ya 🌸</div>
+      </div>
 
-    <div class="card t-note" id="journal">
-      <div class="sec-head"><div class="badge">📝</div><div><h2>Catatan Hati Hari Ini</h2><small>jangan dipendem, tulis aja di sini</small></div></div>
-      <textarea class="journal" id="note" rows="6" placeholder="Tulis apa yang kamu pikirin / rasain hari ini..."></textarea>
-      <div class="note-saved" id="noteSaved"></div>
-    </div>
+      <div class="card t-chart" id="moodchart">
+        <div class="sec-head"><div class="badge">📈</div><div><h2>Mood 7 Hari Terakhir</h2><small>biar keliatan progresnya 🌷</small></div></div>
+        <div class="mood-week" id="moodWeek"></div>
+      </div>
 
-    <div class="card t-no" id="pantangan">
-      <div class="sec-head"><div class="badge">🚫</div><div><h2>Pantangan buat Novi</h2><small>biar ga sering sakit 🥺</small></div></div>
-      <ol class="list">
-        <li>Minum es <span class="muted">APAPUN ITU YANG DINGIN GAUSAH</span></li>
-        <li>Minum kopi <span class="muted">APAPUN ITU GABOLEH, WALAUPUN ADA SUSUNYA BANYAK</span></li>
-        <li>Makan pedes</li>
-        <li>Makan tepung² <span class="muted">apapun itu termasuk roti</span></li>
-        <li>Makan berminyak <span class="muted">termasuk gorengan & ayam goreng</span></li>
-        <li>Makan gak dibuat sendiri <span class="muted">GAUSAH BELI DILUAR, MASAK AJA</span></li>
-        <li>Jajan ciki ciki</li>
-      </ol>
-    </div>
+      <div class="card t-no" id="pantangan">
+        <div class="sec-head"><div class="badge">🚫</div><div><h2>Pantangan buat Novi</h2><small>biar ga sering sakit 🥺</small></div></div>
+        <ol class="list">
+          <li>Minum es <span class="muted">APAPUN ITU YANG DINGIN GAUSAH</span></li>
+          <li>Minum kopi <span class="muted">APAPUN ITU GABOLEH, WALAUPUN ADA SUSUNYA BANYAK</span></li>
+          <li>Makan pedes</li>
+          <li>Makan tepung² <span class="muted">apapun itu termasuk roti</span></li>
+          <li>Makan berminyak <span class="muted">termasuk gorengan & ayam goreng</span></li>
+          <li>Makan gak dibuat sendiri <span class="muted">GAUSAH BELI DILUAR, MASAK AJA</span></li>
+          <li>Jajan ciki ciki</li>
+        </ol>
+      </div>
 
-    <div class="card t-yes" id="boleh">
-      <div class="sec-head"><div class="badge">✅</div><div><h2>Yang Boleh Dimakan</h2><small>pilihan aman & sehat</small></div></div>
-      <ol class="list">
-        <li>Telur</li>
-        <li>Wortel</li>
-        <li>Sayur hijau</li>
-        <li>Tahu / tempe</li>
-        <li>Daging <span class="muted">gaboleh goreng</span></li>
-        <li><strong>AIR PUTIH 2 LITER MINIMAL</strong></li>
-        <li>Tomat <span class="muted">buat gantiin coklat</span></li>
-        <li><strong>WAJIB</strong> makan nasi <span class="muted">minimal 2 sendok/hari</span></li>
-      </ol>
-    </div>
+      <div class="card t-yes" id="boleh">
+        <div class="sec-head"><div class="badge">✅</div><div><h2>Yang Boleh Dimakan</h2><small>pilihan aman & sehat</small></div></div>
+        <ol class="list">
+          <li>Telur</li>
+          <li>Wortel</li>
+          <li>Sayur hijau</li>
+          <li>Tahu / tempe</li>
+          <li>Daging <span class="muted">gaboleh goreng</span></li>
+          <li><strong>AIR PUTIH 2 LITER MINIMAL</strong></li>
+          <li>Tomat <span class="muted">buat gantiin coklat</span></li>
+          <li><strong>WAJIB</strong> makan nasi <span class="muted">minimal 2 sendok/hari</span></li>
+        </ol>
+      </div>
+    </section>
 
-    <div class="card t-goal" id="goals">
-      <div class="sec-head"><div class="badge">🎯</div><div><h2>Yang Mau Aku Ubah Bulan Ini</h2><small>resolusi ultah Novi</small></div></div>
-      <p class="quote">"Ini bulan ultahku, aku pengen ngerubah sesuatu."</p>
-      <ol class="list">
-        <li>Mulai semua jauh lebih awal</li>
-        <li>Gaada kata nunda/nanti apapun itu</li>
-        <li>Lebih berani reach out kalau butuh sesuatu</li>
-        <li>Jadi cantik</li>
-        <li>Istiqomah & ningkatin kualitas ibadah</li>
-      </ol>
-    </div>
+    <section class="view" id="view-catatan">
+      <div class="card t-note" id="journal">
+        <div class="sec-head"><div class="badge">📝</div><div><h2>Catatan Hati Hari Ini</h2><small>jangan dipendem, tulis aja di sini</small></div></div>
+        <textarea class="journal" id="note" rows="6" placeholder="Tulis apa yang kamu pikirin / rasain hari ini..."></textarea>
+        <div class="note-saved" id="noteSaved"></div>
+      </div>
 
-    <footer>
-      <p class="big">Semangat terus, Novi! 🌸</p>
-      <p>Sehat-sehat ya. Pelan-pelan aja, yang penting jalan terus. 🍦</p>
-    </footer>
+      <div class="card t-goal" id="goals">
+        <div class="sec-head"><div class="badge">🎯</div><div><h2>Yang Mau Aku Ubah Bulan Ini</h2><small>resolusi ultah Novi</small></div></div>
+        <p class="quote">"Ini bulan ultahku, aku pengen ngerubah sesuatu."</p>
+        <ol class="list">
+          <li>Mulai semua jauh lebih awal</li>
+          <li>Gaada kata nunda/nanti apapun itu</li>
+          <li>Lebih berani reach out kalau butuh sesuatu</li>
+          <li>Jadi cantik</li>
+          <li>Istiqomah & ningkatin kualitas ibadah</li>
+        </ol>
+      </div>
+
+      <footer>
+        <p class="big">Semangat terus, Novi! 🌸</p>
+        <p>Sehat-sehat ya. Pelan-pelan aja, yang penting jalan terus. 🍦</p>
+      </footer>
+    </section>
+
   </div>
+
+  <nav class="tabbar">
+    <button class="tab active" data-tab="home" aria-selected="true"><span class="ti">🏠</span><span class="tl">Beranda</span></button>
+    <button class="tab" data-tab="ibadah" aria-selected="false"><span class="ti">🕌</span><span class="tl">Ibadah</span></button>
+    <button class="tab" data-tab="sehat" aria-selected="false"><span class="ti">💪</span><span class="tl">Sehat</span></button>
+    <button class="tab" data-tab="catatan" aria-selected="false"><span class="ti">📓</span><span class="tl">Catatan</span></button>
+  </nav>
 
 <script>
 (function(){
@@ -364,7 +373,6 @@
     'Mulai dari yang gampang, sisanya nyusul. 🌷'
   ];
 
-  // === Pesan milestone (generik, ga perlu ditulis) ===
   const MILESTONES=[
     {d:1,  t:'Hari Pertama',     msg:'Langkah pertama udah diambil. Itu yang tersusah! 🌸'},
     {d:3,  t:'3 Hari Beruntun',  msg:'Tiga hari konsisten, keren! Pertahankan ya. 🔥'},
@@ -381,7 +389,7 @@
     const cols=['#ff6fa5','#c44ed9','#ffd1e8','#36b37e','#8fd3ff','#ffd6a5','#fff'];
     for(let i=0;i<42;i++){
       const c=document.createElement('div');
-      c.style.cssText='position:fixed;top:36%;left:50%;width:9px;height:9px;z-index:70;border-radius:2px;background:'+cols[i%cols.length]+';pointer-events:none;';
+      c.style.cssText='position:fixed;top:36%;left:50%;width:9px;height:9px;z-index:80;border-radius:2px;background:'+cols[i%cols.length]+';pointer-events:none;';
       document.body.appendChild(c);
       const ang=Math.random()*Math.PI*2, vel=120+Math.random()*240;
       const dx=Math.cos(ang)*vel, dy=Math.sin(ang)*vel-150;
@@ -389,7 +397,7 @@
     }
   }
 
-  function setThemeColor(dark){ const m=$('themeColor'); if(m)m.setAttribute('content',dark?'#241320':'#e8467f'); }
+  function setThemeColor(dark){ const m=$('themeColor'); if(m)m.setAttribute('content',dark?'#1b0f18':'#e8467f'); }
 
   function initTheme(){
     if((localStorage.getItem('novi_theme')||'light')==='dark'){document.documentElement.setAttribute('data-theme','dark');$('themeBtn').textContent='☀️';setThemeColor(true);}
@@ -403,7 +411,7 @@
   function updateClock(){
     const d=new Date();
     $('clock').textContent=pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
-    $('today').textContent=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
+    const td=$('today'); if(td)td.textContent=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
     const h=d.getHours();
     let g='Selamat malam 🌙';
     if(h<11)g='Selamat pagi 🌅'; else if(h<15)g='Selamat siang ☀️'; else if(h<18)g='Selamat sore 🌇';
@@ -418,7 +426,6 @@
     }
   }
 
-  // BUG FIX: streak yang bolong sekarang jujur reset ke 0
   function syncStreak(){
     const last=localStorage.getItem('novi_lastdone')||'';
     if(last!==TODAY && last!==yesterdayKey()){
@@ -546,7 +553,6 @@
     $('streak').textContent=localStorage.getItem('novi_streak')||'0';
   }
 
-  // === Milestone / hadiah rahasia ===
   function bestStreak(){
     return Math.max(parseInt(localStorage.getItem('novi_streak')||'0'), parseInt(localStorage.getItem('novi_beststreak')||'0'));
   }
@@ -608,7 +614,6 @@
     });
   }
 
-  // === Grafik mood 7 hari terakhir ===
   function initMoodChart(){
     const wrap=$('moodWeek'); if(!wrap)return; wrap.innerHTML='';
     for(let i=6;i>=0;i--){
@@ -664,42 +669,16 @@
     }
   }
 
-  function initReveal(){
-    if(!('IntersectionObserver' in window))return;
-    document.body.classList.add('reveal-ready');
-    const io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.12});
-    document.querySelectorAll('.card').forEach(function(c){ io.observe(c); });
-  }
-
-  function initScrollProgress(){
-    const bar=$('scrollProg');
-    const nav=document.querySelector('nav');
-    let ticking=false, lastY=window.scrollY||0;
-    function upd(){
-      const h=document.documentElement;
-      const y=h.scrollTop||window.scrollY||0;
-      const max=h.scrollHeight-h.clientHeight;
-      if(bar) bar.style.width=(max>0?(y/max*100):0)+'%';
-      if(nav){
-        if(y<140 || y<lastY) nav.classList.remove('nav-hidden');   // dekat atas / scroll naik -> tampil
-        else if(y>lastY+6) nav.classList.add('nav-hidden');         // scroll turun -> sembunyi
-      }
-      lastY=y;
-      ticking=false;
+  function initTabs(){
+    const tabs=document.querySelectorAll('.tab');
+    const views=document.querySelectorAll('.view');
+    function show(name){
+      views.forEach(function(v){ v.classList.toggle('active', v.id==='view-'+name); });
+      tabs.forEach(function(t){ const on=t.dataset.tab===name; t.classList.toggle('active',on); t.setAttribute('aria-selected',on?'true':'false'); });
+      window.scrollTo({top:0,behavior:'smooth'});
     }
-    function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(upd); } }
-    window.addEventListener('scroll',onScroll,{passive:true});
-    window.addEventListener('resize',onScroll,{passive:true});
-    upd();
-  }
-
-  function initNav(){
-    if(!('IntersectionObserver' in window))return;
-    const nav=document.querySelector('nav');
-    const links=document.querySelectorAll('nav a');
-    const map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
-    const io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); const a=map[e.target.id]; if(a){ a.classList.add('active'); if(nav)nav.scrollTo({left:a.offsetLeft-nav.clientWidth/2+a.offsetWidth/2,behavior:'smooth'}); } } }); },{rootMargin:'-45% 0px -50% 0px'});
-    ['progress','milestone','prayer','checklist','water','mood','moodchart','journal','pantangan','boleh','goals'].forEach(function(id){ const el=$(id); if(el)io.observe(el); });
+    tabs.forEach(function(t){ t.addEventListener('click',function(){ show(t.dataset.tab); }); });
+    show('home');
   }
 
   function initIntro(){
@@ -720,9 +699,7 @@
   initCake();
   initPrayer();
   initFloaties();
-  initReveal();
-  initNav();
-  initScrollProgress();
+  initTabs();
   initIntro();
   updateClock();
   updateCountdown();
@@ -730,7 +707,6 @@
   document.addEventListener('visibilitychange',function(){ document.body.classList.toggle('paused',document.hidden); if(!document.hidden){updateClock();updateCountdown();} });
 })();
 
-// === PWA: daftarkan service worker ===
 if('serviceWorker' in navigator){
   window.addEventListener('load',function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
 }
