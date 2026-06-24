@@ -7,37 +7,67 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--rose:#e84a7f;--rose-d:#c9356a;--pink:#ff8fb4;--bg1:#fff0f6;--bg2:#ffe0ec;--ink:#5a2740;--muted:#9b6a82;--card:rgba(255,255,255,.72);--item:rgba(255,255,255,.6);--navbg:rgba(255,255,255,.8);--cardbd:rgba(255,255,255,.6);--ring:#ffe0ec;}
-  [data-theme="dark"]{--rose:#ff86b0;--rose-d:#ff9ec2;--pink:#ff8fb4;--bg1:#2a1622;--bg2:#150b12;--ink:#f6dde9;--muted:#c49bb0;--card:rgba(255,255,255,.06);--item:rgba(255,255,255,.05);--navbg:rgba(45,25,38,.78);--cardbd:rgba(255,255,255,.09);--ring:rgba(255,255,255,.12);}
+  :root{--rose:#e8467f;--rose-d:#c9356a;--pink:#ff8fb4;--bg1:#fff2f8;--bg2:#ffe2ee;--ink:#5a2740;--muted:#9b6a82;--card:rgba(255,255,255,.7);--item:rgba(255,255,255,.62);--navbg:rgba(255,255,255,.82);--cardbd:rgba(255,255,255,.65);--ring:#ffe0ec;}
+  [data-theme="dark"]{--rose:#ff86b0;--rose-d:#ffa6c7;--pink:#ff8fb4;--bg1:#241320;--bg2:#120a10;--ink:#f6dde9;--muted:#c49bb0;--card:rgba(255,255,255,.06);--item:rgba(255,255,255,.055);--navbg:rgba(40,22,34,.8);--cardbd:rgba(255,255,255,.1);--ring:rgba(255,255,255,.13);}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html{scroll-behavior:smooth;}
   body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;background:linear-gradient(160deg,var(--bg1),var(--bg2));position:relative;transition:background .5s,color .5s;}
 
-  .floaties{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+  .bg-blobs{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45;animation:blob 20s ease-in-out infinite;}
+  .blob.b1{width:340px;height:340px;background:#ffb3d1;top:-90px;left:-70px;}
+  .blob.b2{width:320px;height:320px;background:#d9a7ff;bottom:-90px;right:-70px;animation-delay:6s;}
+  .blob.b3{width:260px;height:260px;background:#ffd6a5;top:42%;left:55%;animation-delay:3s;}
+  [data-theme="dark"] .blob{opacity:.25;}
+  @keyframes blob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-28px) scale(1.15)}}
+
+  .floaties{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
   .floaty{position:absolute;bottom:-60px;animation:rise linear infinite;opacity:.6;}
   @keyframes rise{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.6}90%{opacity:.6}100%{transform:translateY(-115vh) rotate(360deg);opacity:0}}
-  .butterfly{position:fixed;z-index:1;pointer-events:none;animation:fly 18s linear infinite;}
-  .butterfly span{display:inline-block;animation:flap .4s ease-in-out infinite;}
-  @keyframes flap{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.4)}}
-  @keyframes fly{0%{transform:translate(-12vw,82vh) rotate(-8deg)}25%{transform:translate(28vw,44vh) rotate(8deg)}50%{transform:translate(58vw,72vh) rotate(-6deg)}75%{transform:translate(86vw,32vh) rotate(10deg)}100%{transform:translate(112vw,60vh) rotate(-8deg)}}
+  .butterfly{position:fixed;z-index:2;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(200,60,120,.3));animation:fly 17s linear infinite;}
+  .butterfly span{display:inline-block;animation:flap .32s ease-in-out infinite;}
+  @keyframes flap{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.38)}}
+  @keyframes fly{0%{transform:translate(-12vw,84vh) rotate(-10deg)}25%{transform:translate(26vw,44vh) rotate(10deg)}50%{transform:translate(56vw,72vh) rotate(-8deg)}75%{transform:translate(84vw,30vh) rotate(12deg)}100%{transform:translate(114vw,58vh) rotate(-10deg)}}
+
+  #intro{display:none;position:fixed;inset:0;z-index:50;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(160deg,#ffd9e8,#f6c8ff);transition:opacity .6s;cursor:pointer;text-align:center;padding:24px;}
+  [data-theme="dark"] #intro{background:linear-gradient(160deg,#2a1622,#241433);}
+  #intro.hide{opacity:0;pointer-events:none;}
+  #intro .gift{font-size:90px;animation:bob 2s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  #intro h2{font-family:'Playfair Display',serif;font-size:28px;color:var(--rose-d);}
+  #intro p{color:var(--muted);font-size:14px;animation:pulse 1.5s infinite;}
+  @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
 
   .theme-btn{position:fixed;top:14px;right:14px;z-index:40;width:46px;height:46px;border:none;border-radius:50%;cursor:pointer;font-size:21px;background:var(--navbg);box-shadow:0 4px 14px rgba(0,0,0,.18);backdrop-filter:blur(6px);}
 
-  .wrap{position:relative;z-index:5;max-width:640px;margin:0 auto;padding:36px 20px 70px;}
-  header{text-align:center;margin-bottom:6px;}
+  .wrap{position:relative;z-index:5;max-width:640px;margin:0 auto;padding:36px 20px 80px;}
+  header{text-align:center;margin-bottom:8px;}
   .greet{font-size:14px;color:var(--rose);font-weight:600;letter-spacing:.5px;}
-  .clock{font-weight:700;font-size:36px;color:var(--rose-d);letter-spacing:2px;margin-top:2px;font-variant-numeric:tabular-nums;}
+  .clock{font-weight:700;font-size:38px;color:var(--rose-d);letter-spacing:2px;margin-top:2px;font-variant-numeric:tabular-nums;}
   .today{font-size:13px;color:var(--muted);margin-bottom:16px;}
   .eyebrow{letter-spacing:3px;text-transform:uppercase;font-size:11px;color:var(--rose);font-weight:600;}
   h1{font-family:'Playfair Display',serif;font-size:38px;line-height:1.15;color:var(--rose-d);margin:6px 0;}
   h1 .nm{display:block;background:linear-gradient(90deg,#ff6fa5,#c44ed9);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .tagline{font-style:italic;color:var(--muted);font-size:14px;margin:12px auto 0;max-width:420px;}
+  .tagline{font-style:italic;color:var(--muted);font-size:14px;margin:12px auto 0;max-width:430px;}
+  .shuffle{margin-top:10px;background:var(--item);border:1px solid var(--cardbd);color:var(--rose-d);font-weight:600;font-size:12.5px;padding:7px 14px;border-radius:999px;cursor:pointer;}
 
-  nav{position:sticky;top:10px;z-index:10;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:24px 0;}
+  .cake-wrap{display:flex;flex-direction:column;align-items:center;margin:22px 0 4px;cursor:pointer;user-select:none;}
+  .cake{position:relative;}
+  .candle{position:absolute;top:-26px;left:50%;transform:translateX(-50%);width:9px;height:30px;background:linear-gradient(#fff,#ffd1e8);border-radius:3px;z-index:2;}
+  .flame{position:absolute;top:-42px;left:50%;transform:translateX(-50%);width:13px;height:18px;background:radial-gradient(circle at 50% 70%,#fff6c0,#ff9d2f 55%,#ff5e3a);border-radius:50% 50% 50% 50%/60% 60% 42% 42%;box-shadow:0 0 18px 4px rgba(255,174,58,.7);animation:flicker .25s infinite alternate;transition:opacity .3s,transform .3s;z-index:3;}
+  @keyframes flicker{from{transform:translateX(-50%) scale(1)}to{transform:translateX(-50%) scale(1.18) rotate(3deg)}}
+  .cake.blown .flame{opacity:0;transform:translateX(-50%) scale(0);}
+  .cake-top{width:130px;height:32px;background:linear-gradient(#fff0f6,#ffd1e8);border-radius:14px 14px 6px 6px;position:relative;z-index:1;box-shadow:inset 0 -6px 0 rgba(255,159,182,.4);}
+  .cake-base{width:152px;height:54px;background:linear-gradient(#ff9fb6,#ff7ba3);border-radius:8px 8px 16px 16px;box-shadow:0 10px 24px rgba(214,51,108,.3);margin:0 auto;}
+  .wish{margin-top:14px;font-size:13.5px;color:var(--muted);font-weight:500;text-align:center;}
+
+  nav{position:sticky;top:10px;z-index:10;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:22px 0;}
   nav a{font-size:12.5px;font-weight:600;text-decoration:none;color:var(--rose-d);background:var(--navbg);padding:8px 13px;border-radius:999px;box-shadow:0 4px 14px rgba(214,51,108,.12);backdrop-filter:blur(6px);transition:.2s;}
-  nav a:hover{background:var(--rose);color:#fff;}
+  nav a:hover,nav a.active{background:var(--rose);color:#fff;}
 
   .card{background:var(--card);backdrop-filter:blur(10px);border-radius:24px;padding:24px 22px;margin:18px 0;box-shadow:0 12px 34px rgba(214,51,108,.14);border:1px solid var(--cardbd);}
+  body.reveal-ready .card{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
+  body.reveal-ready .card.in{opacity:1;transform:none;}
   .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
   .badge{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;flex:none;}
   .sec-head h2{font-size:19px;font-weight:700;line-height:1.25;color:var(--rose-d);}
@@ -56,19 +86,20 @@
 
   .prayer .badge{background:#e7e0ff;}
   .next-pray{display:flex;justify-content:space-between;align-items:center;gap:10px;background:linear-gradient(135deg,#ff6fa5,#c44ed9);color:#fff;border-radius:16px;padding:14px 18px;margin-bottom:14px;}
-  .next-pray .nl{font-size:13px;opacity:.9;}
+  .next-pray .nl{font-size:13px;opacity:.92;}
   .next-pray .nl b{font-size:16px;}
   .next-pray .countdown{font-size:25px;font-weight:800;font-variant-numeric:tabular-nums;}
   .pray-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-  .pray-item{background:var(--item);border-radius:14px;padding:12px 8px;text-align:center;transition:.2s;}
+  .pray-item{background:var(--item);border-radius:14px;padding:12px 8px;text-align:center;transition:.25s;}
   .pray-item .pn{display:block;font-size:12.5px;color:var(--muted);font-weight:600;}
   .pray-item .pt{display:block;font-size:17px;font-weight:700;color:var(--rose-d);margin-top:3px;font-variant-numeric:tabular-nums;}
-  .pray-item.active{background:linear-gradient(135deg,#fff0d6,#ffe0ec);box-shadow:0 0 0 2px var(--rose) inset;}
+  .pray-item.active{background:linear-gradient(135deg,#fff0d6,#ffe0ec);box-shadow:0 0 0 2px var(--rose) inset;transform:translateY(-2px);}
   [data-theme="dark"] .pray-item.active{background:rgba(255,134,176,.22);}
 
   ul.check{list-style:none;}
   ul.check li{margin:8px 0;}
   ul.check label{display:flex;align-items:flex-start;gap:12px;cursor:pointer;background:var(--item);padding:12px 14px;border-radius:14px;transition:.2s;}
+  ul.check label:active{transform:scale(.99);}
   ul.check input{display:none;}
   ul.check .box{flex:none;width:24px;height:24px;border-radius:8px;border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;transition:.2s;margin-top:1px;}
   ul.check .box::after{content:'✓';color:#fff;font-size:14px;opacity:0;transform:scale(.5);transition:.2s;}
@@ -87,6 +118,18 @@
   .glass.full .fill{height:100%;}
   .water-info{text-align:center;margin-top:14px;font-weight:600;color:#3aa0e0;font-size:14px;}
 
+  .t-mood .badge{background:#ffe9d6;}
+  .moods{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .mood-btn{font-size:30px;background:var(--item);border:2px solid transparent;border-radius:16px;width:56px;height:56px;cursor:pointer;transition:.2s;}
+  .mood-btn:hover{transform:translateY(-3px);}
+  .mood-btn.active{border-color:var(--rose);background:linear-gradient(135deg,#fff0d6,#ffe0ec);transform:translateY(-3px) scale(1.05);}
+  .mood-msg{text-align:center;margin-top:12px;font-size:13.5px;color:var(--muted);}
+
+  .t-note .badge{background:#e6f6e9;}
+  .journal{width:100%;min-height:96px;border:1px solid var(--cardbd);border-radius:16px;background:var(--item);color:var(--ink);font-family:inherit;font-size:14px;padding:14px;resize:vertical;outline:none;}
+  .journal:focus{border-color:var(--rose);}
+  .note-saved{text-align:right;font-size:12px;color:#1f9d68;height:16px;margin-top:6px;}
+
   ol.list{list-style:none;counter-reset:i;}
   ol.list li{counter-increment:i;position:relative;padding:11px 14px 11px 48px;margin:8px 0;border-radius:14px;background:var(--item);font-size:14.5px;line-height:1.55;color:var(--ink);}
   ol.list li::before{content:counter(i);position:absolute;left:12px;top:12px;width:24px;height:24px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;}
@@ -101,8 +144,16 @@
 </style>
 </head>
 <body>
+  <div class="bg-blobs"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
   <div class="floaties" id="floaties"></div>
   <button class="theme-btn" id="themeBtn" title="Mode gelap">🌙</button>
+
+  <div id="intro">
+    <div class="gift">🎁</div>
+    <h2>Ada kejutan buat Novi 🌸</h2>
+    <p>tap di mana aja buat buka 👆</p>
+  </div>
+
   <div class="wrap">
     <header>
       <div class="greet" id="greet">Selamat datang 🌸</div>
@@ -111,13 +162,26 @@
       <div class="eyebrow">24 Juni · Hari Spesial</div>
       <h1>Selamat Ulang Tahun<span class="nm">Novina Suci Bidariyati 🌸</span></h1>
       <p class="tagline" id="quote">...</p>
+      <button class="shuffle" id="shuffle">🔀 Quote lain</button>
     </header>
+
+    <div class="cake-wrap" id="cakeWrap">
+      <div class="cake" id="cake">
+        <div class="flame"></div>
+        <div class="candle"></div>
+        <div class="cake-top"></div>
+        <div class="cake-base"></div>
+      </div>
+      <div class="wish" id="wish">Tap lilinnya buat tiup 🎂</div>
+    </div>
 
     <nav>
       <a href="#progress">📊 Progress</a>
       <a href="#prayer">🕌 Solat</a>
       <a href="#checklist">🌸 Checklist</a>
       <a href="#water">💧 Air</a>
+      <a href="#mood">😊 Mood</a>
+      <a href="#journal">📝 Catatan</a>
       <a href="#pantangan">🚫 Pantangan</a>
       <a href="#boleh">✅ Boleh</a>
       <a href="#goals">🎯 Goals</a>
@@ -157,6 +221,18 @@
       <div class="sec-head"><div class="badge">💧</div><div><h2>Tracker Air Putih</h2><small>target 2 liter · tap gelasnya</small></div></div>
       <div class="glasses" id="glasses"></div>
       <div class="water-info"><span id="waterText">0 / 8 gelas</span> · <span id="waterL">0 L</span></div>
+    </div>
+
+    <div class="card t-mood" id="mood">
+      <div class="sec-head"><div class="badge">😊</div><div><h2>Mood Hari Ini</h2><small>gimana perasaanmu sekarang?</small></div></div>
+      <div class="moods" id="moods"></div>
+      <div class="mood-msg" id="moodMsg">Pilih salah satu ya 🌸</div>
+    </div>
+
+    <div class="card t-note" id="journal">
+      <div class="sec-head"><div class="badge">📝</div><div><h2>Catatan Hati Hari Ini</h2><small>jangan dipendem, tulis aja di sini</small></div></div>
+      <textarea class="journal" id="note" placeholder="Tulis apa yang kamu pikirin / rasain hari ini..."></textarea>
+      <div class="note-saved" id="noteSaved"></div>
     </div>
 
     <div class="card t-no" id="pantangan">
@@ -205,43 +281,18 @@
   </div>
 
 <script>
+(function(){
+  'use strict';
   const $=id=>document.getElementById(id);
   const pad=n=>n<10?'0'+n:''+n;
   const days=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
   const months=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
-  // ----- dark mode -----
-  if((localStorage.getItem('novi_theme')||'light')==='dark'){document.documentElement.setAttribute('data-theme','dark');$('themeBtn').textContent='☀️';}
-  $('themeBtn').addEventListener('click',()=>{
-    const dark=document.documentElement.getAttribute('data-theme')==='dark';
-    if(dark){document.documentElement.removeAttribute('data-theme');localStorage.setItem('novi_theme','light');$('themeBtn').textContent='🌙';}
-    else{document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('novi_theme','dark');$('themeBtn').textContent='☀️';}
-  });
-
-  // ----- clock + greeting -----
-  function tick(){
-    const d=new Date();
-    $('clock').textContent=pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
-    $('today').textContent=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
-    const h=d.getHours();
-    let g='Selamat malam 🌙';
-    if(h<11)g='Selamat pagi 🌅'; else if(h<15)g='Selamat siang ☀️'; else if(h<18)g='Selamat sore 🌇';
-    $('greet').textContent=g;
-    prayTick();
-  }
-  tick(); setInterval(tick,1000);
-
-  // ----- daily reset -----
-  function todayKey(){const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
-  function yesterdayKey(){const d=new Date();d.setDate(d.getDate()-1);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
-  const TODAY=todayKey();
-  if(localStorage.getItem('novi_date')!==TODAY){
-    localStorage.setItem('novi_date',TODAY);
-    localStorage.setItem('novi_checks',JSON.stringify([]));
-    localStorage.setItem('novi_water','0');
-  }
-
-  // ----- quote -----
+  // ---------- STATE (init first to avoid TDZ crashes) ----------
+  let prayTimes={}, curNext=null;
+  let habits=[], checks=[], water=0;
+  let celebrated=false, waterCelebrated=false, blown=false;
+  const C=2*Math.PI*52;
   const quotes=[
     'Pelan-pelan asal konsisten, kamu pasti sampai. 🌸',
     'Tubuhmu dengerin caramu rawat dia. Jaga ya. 💧',
@@ -251,16 +302,68 @@
     'Istirahat bukan males, itu bagian dari usaha. 😌',
     'Mulai dari yang gampang, sisanya nyusul. 🌷'
   ];
-  const doy=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/86400000);
-  $('quote').textContent=quotes[doy%quotes.length];
 
-  // ----- prayer times -----
+  function todayKey(){const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+  function yesterdayKey(){const d=new Date();d.setDate(d.getDate()-1);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+  const TODAY=todayKey();
+
+  // ---------- confetti ----------
+  function celebrate(){
+    const cols=['#ff6fa5','#c44ed9','#ffd1e8','#36b37e','#8fd3ff','#ffd6a5','#fff'];
+    for(let i=0;i<80;i++){
+      const c=document.createElement('div');
+      c.style.cssText='position:fixed;top:36%;left:50%;width:9px;height:9px;z-index:70;border-radius:2px;background:'+cols[i%cols.length]+';pointer-events:none;';
+      document.body.appendChild(c);
+      const ang=Math.random()*Math.PI*2, vel=120+Math.random()*260;
+      const dx=Math.cos(ang)*vel, dy=Math.sin(ang)*vel-150;
+      c.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:'translate('+dx+'px,'+(dy+440)+'px) rotate('+(Math.random()*720)+'deg)',opacity:0}],{duration:1500+Math.random()*800,easing:'cubic-bezier(.2,.6,.3,1)'}).onfinish=()=>c.remove();
+    }
+  }
+
+  // ---------- theme ----------
+  function initTheme(){
+    if((localStorage.getItem('novi_theme')||'light')==='dark'){document.documentElement.setAttribute('data-theme','dark');$('themeBtn').textContent='☀️';}
+    $('themeBtn').addEventListener('click',()=>{
+      const dark=document.documentElement.getAttribute('data-theme')==='dark';
+      if(dark){document.documentElement.removeAttribute('data-theme');localStorage.setItem('novi_theme','light');$('themeBtn').textContent='🌙';}
+      else{document.documentElement.setAttribute('data-theme','dark');localStorage.setItem('novi_theme','dark');$('themeBtn').textContent='☀️';}
+    });
+  }
+
+  // ---------- clock ----------
+  function updateClock(){
+    const d=new Date();
+    $('clock').textContent=pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+    $('today').textContent=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
+    const h=d.getHours();
+    let g='Selamat malam 🌙';
+    if(h<11)g='Selamat pagi 🌅'; else if(h<15)g='Selamat siang ☀️'; else if(h<18)g='Selamat sore 🌇';
+    $('greet').textContent=g;
+  }
+
+  // ---------- daily reset ----------
+  function dailyReset(){
+    if(localStorage.getItem('novi_date')!==TODAY){
+      localStorage.setItem('novi_date',TODAY);
+      localStorage.setItem('novi_checks',JSON.stringify([]));
+      localStorage.setItem('novi_water','0');
+    }
+  }
+
+  // ---------- quote ----------
+  function initQuote(){
+    const doy=Math.floor((Date.now()-new Date(new Date().getFullYear(),0,0))/86400000);
+    let idx=doy%quotes.length;
+    $('quote').textContent=quotes[idx];
+    $('shuffle').addEventListener('click',()=>{ idx=(idx+1)%quotes.length; $('quote').textContent=quotes[idx]; });
+  }
+
+  // ---------- prayer ----------
   const PRAYERS=[['Subuh','Fajr'],['Terbit','Sunrise'],['Dzuhur','Dhuhr'],['Ashar','Asr'],['Maghrib','Maghrib'],['Isya','Isha']];
   const NEXTSET=['Subuh','Dzuhur','Ashar','Maghrib','Isya'];
-  let prayTimes={}; let curNext=null;
   function clean(s){return (s||'').split(' ')[0];}
-  function toDate(hhmm){const[h,m]=clean(hhmm).split(':').map(Number);const d=new Date();d.setHours(h,m,0,0);return d;}
-  function loadPrayer(){
+  function toDate(hhmm){const a=clean(hhmm).split(':');const d=new Date();d.setHours(+a[0],+a[1],0,0);return d;}
+  function initPrayer(){
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(
         p=>fetchTimings(p.coords.latitude,p.coords.longitude,'Lokasi kamu'),
@@ -282,72 +385,71 @@
     $('praycity').textContent=label;
     renderPrayer();
   }
-  function showErr(){ $('praycity').textContent='Gagal memuat jadwal (butuh internet)'; }
+  function showErr(){ $('praycity').textContent='Gagal memuat (cek koneksi internet)'; }
   function renderPrayer(){
     const grid=$('prayGrid'); grid.innerHTML='';
-    PRAYERS.forEach(([nm])=>{
-      if(!prayTimes[nm])return;
+    PRAYERS.forEach(function(p){
+      const nm=p[0]; if(!prayTimes[nm])return;
       const it=document.createElement('div'); it.className='pray-item'; it.dataset.nm=nm;
       const a=document.createElement('span'); a.className='pn'; a.textContent=nm;
       const b=document.createElement('span'); b.className='pt'; b.textContent=clean(prayTimes[nm]);
       it.appendChild(a); it.appendChild(b); grid.appendChild(it);
     });
-    curNext=null; prayTick();
+    curNext=null; updateCountdown();
   }
   function computeNext(){
     const now=new Date();
-    for(const nm of NEXTSET){ if(prayTimes[nm] && toDate(prayTimes[nm])>now) return {nm,d:toDate(prayTimes[nm])}; }
-    const d=toDate(prayTimes['Subuh']); d.setDate(d.getDate()+1); return {nm:'Subuh',d};
+    for(let i=0;i<NEXTSET.length;i++){ const nm=NEXTSET[i]; if(prayTimes[nm] && toDate(prayTimes[nm])>now) return {nm:nm,d:toDate(prayTimes[nm])}; }
+    const d=toDate(prayTimes['Subuh']); d.setDate(d.getDate()+1); return {nm:'Subuh',d:d};
   }
-  function prayTick(){
+  function updateCountdown(){
     if(!prayTimes.Subuh)return;
     const nx=computeNext();
     if(nx.nm!==curNext){ curNext=nx.nm; $('nextName').textContent=nx.nm;
-      [...$('prayGrid').children].forEach(c=>c.classList.toggle('active',c.dataset.nm===nx.nm)); }
+      const ch=$('prayGrid').children; for(let i=0;i<ch.length;i++){ ch[i].classList.toggle('active',ch[i].dataset.nm===nx.nm); } }
     let diff=Math.max(0,Math.floor((nx.d-new Date())/1000));
     $('countdown').textContent=pad(Math.floor(diff/3600))+':'+pad(Math.floor(diff%3600/60))+':'+pad(diff%60);
   }
-  loadPrayer();
 
-  // ----- checklist -----
-  const habits=[
-    {t:'Solat Dhuha & sunnah setelahnya',n:'anjerr jangan maless'},
-    {t:'Tadarus 1 kali sehari',n:''},
-    {t:'Olahraga pushup/situp dll sebelum mandi',n:''},
-    {t:'Ga begadang',n:'21.30 siap-siap, 22.00 udah tidur'},
-    {t:'Solat tahajud',n:'jam 04.00'},
-    {t:'Ga nunda waktu solat',n:'maks +30 menit adzan udah solat'},
-    {t:'Wajib makan, inget makan',n:'minimal 2x sehari'},
-    {t:'Coba puasa sunnah lagi',n:'bismillah bisa deh'},
-    {t:'Main HP/sosmed cuma 10 menit',n:'tiap jeda waktu solat'},
-    {t:'Jangan mendem perasaan',n:'cerita ke Allah, tulis di diary, atau cerita ke orang'},
-    {t:'Belajar & merangkum matkul',n:''},
-    {t:'Minum air anget pagi + vitamin',n:'sebelum makan'},
-    {t:'Istirahat kalau capek',n:'jangan dipaksa, lihat jam'}
-  ];
-  let checks=JSON.parse(localStorage.getItem('novi_checks')||'[]');
-  while(checks.length<habits.length)checks.push(false);
-  const list=$('checkList');
-  habits.forEach((h,i)=>{
-    const li=document.createElement('li');
-    const label=document.createElement('label');
-    const cb=document.createElement('input'); cb.type='checkbox'; cb.checked=!!checks[i];
-    const box=document.createElement('span'); box.className='box';
-    const lbl=document.createElement('span'); lbl.className='lbl'; lbl.textContent=h.t;
-    if(h.n){const note=document.createElement('span'); note.className='note'; note.textContent=h.n; lbl.appendChild(note);}
-    label.appendChild(cb); label.appendChild(box); label.appendChild(lbl); li.appendChild(label);
-    if(checks[i])li.classList.add('done');
-    cb.addEventListener('change',()=>{
-      checks[i]=cb.checked; li.classList.toggle('done',cb.checked);
-      localStorage.setItem('novi_checks',JSON.stringify(checks));
-      updateProgress(false);
+  // ---------- checklist ----------
+  function initChecklist(){
+    habits=[
+      {t:'Solat Dhuha & sunnah setelahnya',n:'anjerr jangan maless'},
+      {t:'Tadarus 1 kali sehari',n:''},
+      {t:'Olahraga pushup/situp dll sebelum mandi',n:''},
+      {t:'Ga begadang',n:'21.30 siap-siap, 22.00 udah tidur'},
+      {t:'Solat tahajud',n:'jam 04.00'},
+      {t:'Ga nunda waktu solat',n:'maks +30 menit adzan udah solat'},
+      {t:'Wajib makan, inget makan',n:'minimal 2x sehari'},
+      {t:'Coba puasa sunnah lagi',n:'bismillah bisa deh'},
+      {t:'Main HP/sosmed cuma 10 menit',n:'tiap jeda waktu solat'},
+      {t:'Jangan mendem perasaan',n:'cerita ke Allah, tulis di diary, atau cerita ke orang'},
+      {t:'Belajar & merangkum matkul',n:''},
+      {t:'Minum air anget pagi + vitamin',n:'sebelum makan'},
+      {t:'Istirahat kalau capek',n:'jangan dipaksa, lihat jam'}
+    ];
+    checks=JSON.parse(localStorage.getItem('novi_checks')||'[]');
+    while(checks.length<habits.length)checks.push(false);
+    const list=$('checkList');
+    habits.forEach(function(h,i){
+      const li=document.createElement('li');
+      const label=document.createElement('label');
+      const cb=document.createElement('input'); cb.type='checkbox'; cb.checked=!!checks[i];
+      const box=document.createElement('span'); box.className='box';
+      const lbl=document.createElement('span'); lbl.className='lbl'; lbl.textContent=h.t;
+      if(h.n){const note=document.createElement('span'); note.className='note'; note.textContent=h.n; lbl.appendChild(note);}
+      label.appendChild(cb); label.appendChild(box); label.appendChild(lbl); li.appendChild(label);
+      if(checks[i])li.classList.add('done');
+      cb.addEventListener('change',function(){
+        checks[i]=cb.checked; li.classList.toggle('done',cb.checked);
+        localStorage.setItem('novi_checks',JSON.stringify(checks));
+        updateProgress(false);
+      });
+      list.appendChild(li);
     });
-    list.appendChild(li);
-  });
-
-  const C=2*Math.PI*52;
-  $('ring').style.strokeDasharray=C;
-  let celebrated=false;
+    $('ring').style.strokeDasharray=C;
+    updateProgress(true);
+  }
   function updateProgress(initial){
     const done=checks.filter(Boolean).length;
     const pct=Math.round(done/habits.length*100);
@@ -367,57 +469,130 @@
     }
   }
 
-  // ----- water -----
-  const glasses=$('glasses');
-  let water=parseInt(localStorage.getItem('novi_water')||'0');
-  let waterCelebrated=false;
-  for(let i=0;i<8;i++){
-    const g=document.createElement('div'); g.className='glass';
-    const f=document.createElement('div'); f.className='fill'; g.appendChild(f);
-    g.addEventListener('click',()=>{ water=(water===i+1)?i:i+1; localStorage.setItem('novi_water',water); renderWater(false); });
-    glasses.appendChild(g);
+  // ---------- water ----------
+  function initWater(){
+    const glasses=$('glasses');
+    water=parseInt(localStorage.getItem('novi_water')||'0');
+    for(let i=0;i<8;i++){
+      const g=document.createElement('div'); g.className='glass';
+      const f=document.createElement('div'); f.className='fill'; g.appendChild(f);
+      (function(idx){ g.addEventListener('click',function(){ water=(water===idx+1)?idx:idx+1; localStorage.setItem('novi_water',water); renderWater(false); }); })(i);
+      glasses.appendChild(g);
+    }
+    renderWater(true);
   }
   function renderWater(initial){
-    [...glasses.children].forEach((g,i)=>g.classList.toggle('full',i<water));
+    const ch=$('glasses').children;
+    for(let i=0;i<ch.length;i++){ ch[i].classList.toggle('full',i<water); }
     $('waterText').textContent=water+' / 8 gelas';
     $('waterL').textContent=(water*0.25).toFixed(2)+' L';
     if(water>=8){ if(!initial && !waterCelebrated)celebrate(); waterCelebrated=true; } else { waterCelebrated=false; }
   }
 
-  function celebrate(){
-    const cols=['#ff6fa5','#c44ed9','#ffd1e8','#36b37e','#8fd3ff','#fff'];
-    for(let i=0;i<70;i++){
-      const c=document.createElement('div');
-      c.style.cssText='position:fixed;top:38%;left:50%;width:9px;height:9px;z-index:60;border-radius:2px;background:'+cols[i%cols.length]+';pointer-events:none;';
-      document.body.appendChild(c);
-      const ang=Math.random()*Math.PI*2, vel=120+Math.random()*240;
-      const dx=Math.cos(ang)*vel, dy=Math.sin(ang)*vel-140;
-      c.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:'translate('+dx+'px,'+(dy+420)+'px) rotate('+(Math.random()*720)+'deg)',opacity:0}],{duration:1500+Math.random()*700,easing:'cubic-bezier(.2,.6,.3,1)'}).onfinish=()=>c.remove();
+  // ---------- mood ----------
+  function initMood(){
+    const moods=[['😄','Senang'],['🙂','Oke'],['😐','Biasa'],['😔','Sedih'],['😣','Capek']];
+    const wrap=$('moods'); const key='novi_mood_'+TODAY;
+    const saved=localStorage.getItem(key);
+    if(saved){ const m=moods.find(x=>x[0]===saved); if(m)$('moodMsg').textContent='Mood hari ini: '+m[1]+' '+m[0]; }
+    moods.forEach(function(m){
+      const b=document.createElement('button'); b.className='mood-btn'; b.textContent=m[0]; b.title=m[1];
+      if(saved===m[0])b.classList.add('active');
+      b.addEventListener('click',function(){
+        localStorage.setItem(key,m[0]);
+        const all=wrap.children; for(let i=0;i<all.length;i++)all[i].classList.remove('active');
+        b.classList.add('active');
+        $('moodMsg').textContent='Mood hari ini: '+m[1]+' '+m[0];
+      });
+      wrap.appendChild(b);
+    });
+  }
+
+  // ---------- journal ----------
+  function initJournal(){
+    const ta=$('note'); const k='novi_note_'+TODAY;
+    ta.value=localStorage.getItem(k)||'';
+    let timer=null;
+    ta.addEventListener('input',function(){
+      localStorage.setItem(k,ta.value);
+      $('noteSaved').textContent='Tersimpan ✓';
+      clearTimeout(timer); timer=setTimeout(function(){ $('noteSaved').textContent=''; },1500);
+    });
+  }
+
+  // ---------- cake ----------
+  function initCake(){
+    $('cakeWrap').addEventListener('click',function(){
+      blown=!blown;
+      $('cake').classList.toggle('blown',blown);
+      if(blown){ $('wish').textContent='Make a wish! ✨ Selamat ulang tahun, Novi! 🎂'; celebrate(); }
+      else { $('wish').textContent='Tap lilinnya buat tiup 🎂'; }
+    });
+  }
+
+  // ---------- floaties + butterflies ----------
+  function initFloaties(){
+    const F=$('floaties');
+    const items=['🌸','🍦','🍨','🧁','🍓','🤍','🌷'];
+    for(let i=0;i<22;i++){
+      const e=document.createElement('div'); e.className='floaty';
+      e.textContent=items[Math.floor(Math.random()*items.length)];
+      e.style.left=Math.random()*100+'vw';
+      e.style.fontSize=(16+Math.random()*20)+'px';
+      e.style.animationDuration=(8+Math.random()*9)+'s';
+      e.style.animationDelay=(Math.random()*9)+'s';
+      F.appendChild(e);
+    }
+    for(let i=0;i<7;i++){
+      const b=document.createElement('div'); b.className='butterfly'; b.innerHTML='<span>🦋</span>';
+      b.style.fontSize=(22+Math.random()*18)+'px';
+      b.style.animationDuration=(14+Math.random()*9)+'s';
+      b.style.animationDelay=(Math.random()*8)+'s';
+      document.body.appendChild(b);
     }
   }
 
-  renderWater(true);
-  updateProgress(true);
+  // ---------- reveal on scroll ----------
+  function initReveal(){
+    if(!('IntersectionObserver' in window))return;
+    document.body.classList.add('reveal-ready');
+    const io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.12});
+    document.querySelectorAll('.card').forEach(function(c){ io.observe(c); });
+  }
 
-  // ----- floaties -----
-  const F=$('floaties');
-  const items=['🌸','🍦','🍨','🧁','🍓','🤍','🌷'];
-  for(let i=0;i<22;i++){
-    const e=document.createElement('div'); e.className='floaty';
-    e.textContent=items[Math.floor(Math.random()*items.length)];
-    e.style.left=Math.random()*100+'vw';
-    e.style.fontSize=(16+Math.random()*20)+'px';
-    e.style.animationDuration=(8+Math.random()*9)+'s';
-    e.style.animationDelay=(Math.random()*9)+'s';
-    F.appendChild(e);
+  // ---------- active nav ----------
+  function initNav(){
+    if(!('IntersectionObserver' in window))return;
+    const links=document.querySelectorAll('nav a');
+    const map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
+    const io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); if(map[e.target.id])map[e.target.id].classList.add('active'); } }); },{rootMargin:'-45% 0px -50% 0px'});
+    ['progress','prayer','checklist','water','mood','journal','pantangan','boleh','goals'].forEach(function(id){ const el=$(id); if(el)io.observe(el); });
   }
-  for(let i=0;i<5;i++){
-    const b=document.createElement('div'); b.className='butterfly'; b.innerHTML='<span>🦋</span>';
-    b.style.fontSize=(22+Math.random()*16)+'px';
-    b.style.animationDuration=(15+Math.random()*8)+'s';
-    b.style.animationDelay=(Math.random()*7)+'s';
-    document.body.appendChild(b);
+
+  // ---------- intro overlay ----------
+  function initIntro(){
+    const intro=$('intro'); intro.style.display='flex';
+    intro.addEventListener('click',function(){ intro.classList.add('hide'); celebrate(); setTimeout(function(){ intro.style.display='none'; },650); },{once:true});
   }
+
+  // ---------- RUN ----------
+  initTheme();
+  dailyReset();
+  initQuote();
+  initChecklist();
+  initWater();
+  initMood();
+  initJournal();
+  initCake();
+  initPrayer();
+  initFloaties();
+  initReveal();
+  initNav();
+  initIntro();
+  updateClock();
+  updateCountdown();
+  setInterval(function(){ updateClock(); updateCountdown(); },1000);
+})();
 </script>
 </body>
 </html>
