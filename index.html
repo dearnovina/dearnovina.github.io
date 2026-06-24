@@ -18,16 +18,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--rose:#e8467f;--rose-d:#c9356a;--pink:#ff8fb4;--bg1:#fff5fa;--bg2:#ffe9f2;--ink:#4a2236;--muted:#9b6a82;--card:rgba(255,255,255,.72);--cardbd:rgba(232,70,127,.14);--glass:rgba(255,255,255,.8);--item:rgba(232,70,127,.06);--ring:#ffe0ec;--grad:linear-gradient(135deg,#ff6fa5,#c44ed9);--shadow:0 10px 30px rgba(214,51,108,.12);}
-  [data-theme="dark"]{--rose:#ff86b0;--rose-d:#ffb3cf;--pink:#ff8fb4;--bg1:#1b0f18;--bg2:#120a10;--ink:#f6dde9;--muted:#c49bb0;--card:rgba(42,24,36,.6);--cardbd:rgba(255,255,255,.08);--glass:rgba(30,16,26,.74);--item:rgba(255,255,255,.05);--ring:rgba(255,255,255,.12);--shadow:0 12px 32px rgba(0,0,0,.45);}
+  :root{--rose:#e8467f;--rose-d:#c9356a;--pink:#ff8fb4;--bg1:#fff5fa;--bg2:#ffe9f2;--ink:#4a2236;--muted:#9b6a82;--card:rgba(255,255,255,.82);--cardbd:rgba(232,70,127,.14);--glass:rgba(255,255,255,.8);--item:rgba(232,70,127,.06);--ring:#ffe0ec;--grad:linear-gradient(135deg,#ff6fa5,#c44ed9);--shadow:0 10px 30px rgba(214,51,108,.12);}
+  [data-theme="dark"]{--rose:#ff86b0;--rose-d:#ffb3cf;--pink:#ff8fb4;--bg1:#1b0f18;--bg2:#120a10;--ink:#f6dde9;--muted:#c49bb0;--card:rgba(42,24,36,.74);--cardbd:rgba(255,255,255,.08);--glass:rgba(30,16,26,.74);--item:rgba(255,255,255,.05);--ring:rgba(255,255,255,.12);--shadow:0 12px 32px rgba(0,0,0,.45);}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html{scroll-behavior:smooth;}
   body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;background:linear-gradient(160deg,var(--bg1),var(--bg2));position:relative;transition:background .4s,color .4s;padding-bottom:100px;}
-  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 12% 8%,rgba(255,179,209,.5),transparent 40%),radial-gradient(circle at 88% 14%,rgba(217,167,255,.45),transparent 42%),radial-gradient(circle at 50% 98%,rgba(255,214,165,.4),transparent 45%);}
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 12% 8%,rgba(255,179,209,.4),transparent 42%),radial-gradient(circle at 88% 14%,rgba(217,167,255,.38),transparent 44%);}
   [data-theme="dark"] body::before{background:radial-gradient(circle at 12% 8%,rgba(255,134,176,.14),transparent 40%),radial-gradient(circle at 88% 14%,rgba(150,110,200,.16),transparent 42%);}
 
-  .aurora{position:fixed;inset:-25% -25% auto -25%;height:150%;z-index:0;pointer-events:none;filter:blur(64px);opacity:.55;background:radial-gradient(40% 40% at 18% 28%,#ff9ec7,transparent 60%),radial-gradient(38% 38% at 82% 18%,#c9a7ff,transparent 60%),radial-gradient(46% 46% at 62% 82%,#ffd6a5,transparent 60%);animation:aurora 26s ease-in-out infinite alternate;will-change:transform;}
-  @keyframes aurora{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-3%,-4%,0) scale(1.12)}100%{transform:translate3d(3%,3%,0) scale(1.06)}}
+  .aurora{position:fixed;inset:-25% -25% auto -25%;height:150%;z-index:0;pointer-events:none;filter:blur(44px);opacity:.5;background:radial-gradient(40% 40% at 18% 28%,#ff9ec7,transparent 60%),radial-gradient(38% 38% at 82% 18%,#c9a7ff,transparent 60%),radial-gradient(46% 46% at 62% 82%,#ffd6a5,transparent 60%);animation:aurora 40s ease-in-out infinite alternate;will-change:transform;}
+  @keyframes aurora{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-2%,-3%,0) scale(1.06)}100%{transform:translate3d(2%,2%,0) scale(1.03)}}
   [data-theme="dark"] .aurora{opacity:.32;}
   .skyglow{position:fixed;top:0;left:0;right:0;height:36vh;z-index:0;pointer-events:none;opacity:.45;transition:background 1.4s ease;background:linear-gradient(180deg,var(--sky,#ffe1b0),transparent);}
   [data-theme="dark"] .skyglow{opacity:.22;}
@@ -97,7 +97,7 @@
   .plate{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:178px;height:16px;background:radial-gradient(ellipse at 50% 35%,#ffffff,#ffd2e2);border-radius:50%;box-shadow:0 10px 20px rgba(214,51,108,.2);z-index:0;}
   .wish{margin-top:12px;font-size:13px;color:var(--muted);font-weight:500;text-align:center;}
 
-  .card{background:var(--card);border-radius:22px;padding:22px 20px;margin:16px 0;box-shadow:var(--shadow);border:1px solid var(--cardbd);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);}
+  .card{background:var(--card);border-radius:22px;padding:22px 20px;margin:16px 0;box-shadow:var(--shadow);border:1px solid var(--cardbd);contain:layout style;}
   .sec-head{display:flex;align-items:center;gap:13px;margin-bottom:15px;}
   .badge{width:46px;height:46px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:23px;flex:none;}
   .sec-head h2{font-size:18px;font-weight:700;line-height:1.25;color:var(--rose-d);}
@@ -161,6 +161,24 @@
   .journal:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(232,70,127,.15);}
   .journal::placeholder{color:var(--muted);opacity:.85;}
   .note-saved{text-align:right;font-size:12px;color:#36b37e;font-weight:600;margin-top:6px;min-height:16px;}
+
+  .t-export .badge{background:#d9f7ee;}
+  .exp-range{display:flex;gap:10px;margin-bottom:12px;}
+  .exp-f{flex:1;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);font-weight:600;}
+  .exp-f input{font-family:inherit;font-size:14px;padding:9px 11px;border-radius:12px;border:1px solid var(--cardbd);background:var(--item);color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;}
+  .exp-f input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(232,70,127,.15);}
+  .exp-quick{display:flex;gap:8px;margin-bottom:14px;}
+  .qbtn{flex:1;font-family:inherit;font-size:12.5px;font-weight:600;padding:8px;border-radius:999px;border:1px solid var(--cardbd);background:var(--item);color:var(--muted);cursor:pointer;transition:.15s;}
+  .qbtn:active{transform:scale(.95);}
+  .qbtn.active{background:var(--grad);color:#fff;border-color:transparent;}
+  .exp-opts{display:flex;flex-wrap:wrap;gap:10px 16px;margin-bottom:14px;}
+  .exp-opts label{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink);cursor:pointer;}
+  .exp-opts input{width:17px;height:17px;accent-color:var(--rose);}
+  .exp-actions{display:flex;flex-wrap:wrap;gap:9px;}
+  .exp-btn{flex:1;min-width:120px;font-family:inherit;font-size:13px;font-weight:600;padding:11px;border-radius:14px;border:1px solid var(--cardbd);background:var(--item);color:var(--ink);cursor:pointer;transition:transform .15s,box-shadow .2s;}
+  .exp-btn:active{transform:scale(.96);}
+  .exp-btn.primary{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(196,78,217,.32);}
+  .exp-msg{text-align:center;font-size:12.5px;color:#36b37e;font-weight:600;margin-top:11px;min-height:16px;}
 
   .t-chart .badge{background:#e0f0ff;}
   .mood-week{display:flex;gap:7px;justify-content:space-between;}
@@ -380,6 +398,30 @@
           <li>Jadi cantik</li>
           <li>Istiqomah & ningkatin kualitas ibadah</li>
         </ol>
+      </div>
+
+      <div class="card t-export" id="export">
+        <div class="sec-head"><div class="badge">📤</div><div><h2>Export & Backup</h2><small>simpan / bagikan progresmu 🌸</small></div></div>
+        <div class="exp-range">
+          <label class="exp-f"><span>Dari</span><input type="date" id="expFrom"></label>
+          <label class="exp-f"><span>Sampai</span><input type="date" id="expTo"></label>
+        </div>
+        <div class="exp-quick" id="expQuick">
+          <button class="qbtn" data-range="7">7 hari</button>
+          <button class="qbtn" data-range="30">30 hari</button>
+          <button class="qbtn" data-range="all">Semua</button>
+        </div>
+        <div class="exp-opts">
+          <label><input type="checkbox" id="expMood" checked> Mood</label>
+          <label><input type="checkbox" id="expNote" checked> Catatan hati</label>
+          <label><input type="checkbox" id="expHabit" checked> Konsistensi</label>
+        </div>
+        <div class="exp-actions">
+          <button class="exp-btn primary" id="expTxt">📄 Download teks</button>
+          <button class="exp-btn" id="expJson">💾 Backup JSON</button>
+          <button class="exp-btn" id="expCopy">📋 Salin</button>
+        </div>
+        <div class="exp-msg" id="expMsg"></div>
       </div>
 
       <footer>
@@ -795,6 +837,102 @@
     });
   }
 
+  const MOODLABEL={'😄':'Senang','🙂':'Oke','😐':'Biasa','😔':'Sedih','😣':'Capek'};
+  function dateKeyOf(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+  function fmtDateID(key){ const a=key.split('-'); const d=new Date(+a[0],+a[1]-1,+a[2]); return days[d.getDay()]+', '+(+a[2])+' '+months[+a[1]-1]+' '+a[0]; }
+  function earliestKey(){
+    let min=null;
+    for(let i=0;i<localStorage.length;i++){
+      const k=localStorage.key(i); let m=null;
+      if(k.indexOf('novi_mood_')===0)m=k.slice(10);
+      else if(k.indexOf('novi_note_')===0)m=k.slice(10);
+      if(m && /^\d{4}-\d{2}-\d{2}$/.test(m)){ if(!min||m<min)min=m; }
+    }
+    JSON.parse(localStorage.getItem('novi_donedays')||'[]').forEach(function(x){ if(!min||x<min)min=x; });
+    return min||TODAY;
+  }
+  function gatherData(fromKey,toKey){
+    const dd=JSON.parse(localStorage.getItem('novi_donedays')||'[]');
+    const fa=fromKey.split('-'), ta=toKey.split('-');
+    let d=new Date(+fa[0],+fa[1]-1,+fa[2]); const end=new Date(+ta[0],+ta[1]-1,+ta[2]);
+    const rows=[]; let guard=0;
+    while(d<=end && guard<4000){
+      const key=dateKeyOf(d);
+      rows.push({date:key,mood:localStorage.getItem('novi_mood_'+key)||'',note:localStorage.getItem('novi_note_'+key)||'',done:dd.indexOf(key)>=0});
+      d.setDate(d.getDate()+1); guard++;
+    }
+    return rows;
+  }
+  function buildText(rows,opt){
+    const first=rows[0].date, last=rows[rows.length-1].date;
+    let out='🌸 PROGRES NOVI\n';
+    out+='Periode: '+fmtDateID(first)+'  →  '+fmtDateID(last)+'\n';
+    out+='Streak sekarang: '+(localStorage.getItem('novi_streak')||'0')+' hari · Rekor terbaik: '+(localStorage.getItem('novi_beststreak')||'0')+' hari\n';
+    if(opt.habit){ const dc=rows.filter(function(r){return r.done;}).length; out+='Hari konsisten: '+dc+' dari '+rows.length+' hari\n'; }
+    out+='\n────────────────────\n\n';
+    let n=0;
+    rows.forEach(function(r){
+      const bits=[];
+      if(opt.habit && r.done) bits.push('✅ Hari beres');
+      if(opt.mood && r.mood) bits.push('Mood: '+r.mood+' '+(MOODLABEL[r.mood]||''));
+      if(opt.note && r.note) bits.push('Catatan: '+r.note);
+      if(bits.length===0) return;
+      n++; out+='📅 '+fmtDateID(r.date)+'\n';
+      bits.forEach(function(b){ out+='   • '+b+'\n'; }); out+='\n';
+    });
+    if(n===0) out+='(Belum ada isian di periode ini)\n';
+    return out.trim()+'\n';
+  }
+  function buildJson(rows,opt){
+    return JSON.stringify({
+      app:'Buat Novi', exportedAt:new Date().toISOString(),
+      range:{from:rows[0].date,to:rows[rows.length-1].date},
+      stats:{streak:parseInt(localStorage.getItem('novi_streak')||'0'),bestStreak:parseInt(localStorage.getItem('novi_beststreak')||'0')},
+      days:rows.map(function(r){ const o={date:r.date}; if(opt.habit)o.done=r.done; if(opt.mood)o.mood=r.mood||null; if(opt.note)o.note=r.note||null; return o; })
+    },null,2);
+  }
+  function downloadFile(name,content,type){
+    try{
+      const blob=new Blob([content],{type:type}); const url=URL.createObjectURL(blob);
+      const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click();
+      setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); },120);
+    }catch(e){}
+  }
+  function fallbackCopy(t){ const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); }
+  function initExport(){
+    const from=$('expFrom'), to=$('expTo'), msg=$('expMsg');
+    to.value=TODAY; const wk=new Date(); wk.setDate(wk.getDate()-6); from.value=dateKeyOf(wk);
+    function setQuick(active){ document.querySelectorAll('#expQuick .qbtn').forEach(function(b){ b.classList.toggle('active',b===active); }); }
+    document.querySelectorAll('#expQuick .qbtn').forEach(function(b){
+      b.addEventListener('click',function(){
+        to.value=TODAY; const r=b.dataset.range;
+        if(r==='all'){ from.value=earliestKey(); }
+        else { const d=new Date(); d.setDate(d.getDate()-(parseInt(r)-1)); from.value=dateKeyOf(d); }
+        setQuick(b);
+      });
+    });
+    function opts(){ return {mood:$('expMood').checked,note:$('expNote').checked,habit:$('expHabit').checked}; }
+    function rangeRows(){ let f=from.value, t=to.value; if(!f||!t)return null; if(f>t){ const tmp=f; f=t; t=tmp; } return gatherData(f,t); }
+    function flash(txt){ msg.textContent=txt; setTimeout(function(){ msg.textContent=''; },2600); }
+    $('expTxt').addEventListener('click',function(){
+      const rows=rangeRows(); if(!rows){ flash('Pilih tanggalnya dulu ya'); return; }
+      downloadFile('progres-novi-'+rows[0].date+'_'+rows[rows.length-1].date+'.txt',buildText(rows,opts()),'text/plain;charset=utf-8');
+      flash('File teks ke-download ✓'); buzz(20);
+    });
+    $('expJson').addEventListener('click',function(){
+      const rows=rangeRows(); if(!rows){ flash('Pilih tanggalnya dulu ya'); return; }
+      downloadFile('backup-novi-'+rows[0].date+'_'+rows[rows.length-1].date+'.json',buildJson(rows,opts()),'application/json');
+      flash('Backup JSON ke-download ✓'); buzz(20);
+    });
+    $('expCopy').addEventListener('click',function(){
+      const rows=rangeRows(); if(!rows){ flash('Pilih tanggalnya dulu ya'); return; }
+      const txt=buildText(rows,opts());
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){ flash('Tersalin ✓ tinggal paste'); buzz(20); }).catch(function(){ fallbackCopy(txt); flash('Tersalin ✓'); }); }
+      else { fallbackCopy(txt); flash('Tersalin ✓'); }
+    });
+    setQuick(document.querySelector('#expQuick .qbtn[data-range="7"]'));
+  }
+
   function initCake(){
     function toggleCake(){
       blown=!blown;
@@ -809,7 +947,7 @@
   function initFloaties(){
     const F=$('floaties');
     const items=['🌸','🍦','🍨','🧁','🍓','🌷'];
-    for(let i=0;i<8;i++){
+    for(let i=0;i<5;i++){
       const e=document.createElement('div'); e.className='floaty';
       e.textContent=items[Math.floor(Math.random()*items.length)];
       e.style.left=Math.random()*100+'vw';
@@ -818,7 +956,7 @@
       e.style.animationDelay=(Math.random()*10)+'s';
       F.appendChild(e);
     }
-    for(let i=0;i<3;i++){
+    for(let i=0;i<2;i++){
       const b=document.createElement('div'); b.className='butterfly'; b.innerHTML='<span>🦋</span>';
       b.style.fontSize=(22+Math.random()*14)+'px';
       b.style.animationDuration=(18+Math.random()*8)+'s';
@@ -882,6 +1020,7 @@
   initMood();
   initMoodChart();
   initJournal();
+  initExport();
   initCake();
   initPrayer();
   initFloaties();
