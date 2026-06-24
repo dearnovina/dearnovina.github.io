@@ -42,7 +42,9 @@
   #intro h2{font-family:'Playfair Display',serif;font-size:27px;color:var(--rose-d);}
   #intro p{color:var(--muted);font-size:14px;}
 
-  .theme-btn{position:fixed;top:14px;right:14px;z-index:40;width:46px;height:46px;border:none;border-radius:50%;cursor:pointer;font-size:21px;background:var(--navbg);box-shadow:0 4px 14px rgba(0,0,0,.16);}
+  .theme-btn{position:fixed;bottom:20px;right:18px;z-index:45;width:50px;height:50px;border:none;border-radius:50%;cursor:pointer;font-size:22px;background:var(--navbg);box-shadow:0 6px 18px rgba(214,51,108,.28);transition:transform .15s,box-shadow .2s;}
+  .theme-btn:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(214,51,108,.36);}
+  .theme-btn:active{transform:scale(.92);}
 
   .wrap{position:relative;z-index:5;max-width:640px;margin:0 auto;padding:36px 20px 80px;}
   header{text-align:center;margin-bottom:6px;}
@@ -73,9 +75,17 @@
   .plate{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:178px;height:16px;background:radial-gradient(ellipse at 50% 35%,#ffffff,#ffd2e2);border-radius:50%;box-shadow:0 10px 20px rgba(214,51,108,.2);z-index:0;}
   .wish{margin-top:16px;font-size:13.5px;color:var(--muted);font-weight:500;text-align:center;}
 
-  nav{position:sticky;top:10px;z-index:10;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:22px 0;}
-  nav a{font-size:12.5px;font-weight:600;text-decoration:none;color:var(--rose-d);background:var(--navbg);padding:8px 13px;border-radius:999px;box-shadow:0 3px 10px rgba(214,51,108,.12);transition:.2s;}
-  nav a:hover,nav a.active{background:var(--rose);color:#fff;}
+  /* Bar progress baca tipis di paling atas */
+  .scroll-prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,#ff6fa5,#c44ed9);box-shadow:0 0 8px rgba(196,78,217,.45);border-radius:0 3px 3px 0;will-change:width;}
+
+  /* Menu sticky: cukup 1 baris, scroll horizontal, hemat layar */
+  nav{position:sticky;top:8px;z-index:20;display:flex;gap:7px;flex-wrap:nowrap;overflow-x:auto;scroll-behavior:smooth;margin:20px 0;padding:4px 2px;-webkit-overflow-scrolling:touch;scrollbar-width:none;-webkit-mask:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .3s;}
+  nav.nav-hidden{transform:translateY(-165%);opacity:0;pointer-events:none;}
+  nav::-webkit-scrollbar{display:none;}
+  nav a{flex:none;white-space:nowrap;font-size:12.5px;font-weight:600;text-decoration:none;color:var(--rose-d);background:var(--navbg);padding:8px 14px;border-radius:999px;box-shadow:0 3px 10px rgba(214,51,108,.12);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .25s,color .25s,transform .18s,box-shadow .25s;}
+  nav a:hover{transform:translateY(-2px);}
+  nav a:active{transform:scale(.94);}
+  nav a.active{background:linear-gradient(135deg,#ff6fa5,#c44ed9);color:#fff;box-shadow:0 5px 14px rgba(196,78,217,.4);transform:translateY(-1px);}
 
   .card{background:var(--card);border-radius:24px;padding:24px 22px;margin:18px 0;box-shadow:0 10px 26px rgba(214,51,108,.12);border:1px solid var(--cardbd);}
   body.reveal-ready .card{opacity:0;transform:translateY(22px);transition:opacity .5s,transform .5s;}
@@ -138,6 +148,13 @@
   .mood-btn.active{border-color:var(--rose);background:linear-gradient(135deg,#fff0d6,#ffe0ec);transform:translateY(-3px) scale(1.05);}
   .mood-msg{text-align:center;margin-top:12px;font-size:13.5px;color:var(--muted);}
 
+  /* === Kotak catatan === */
+  .t-note .badge{background:#ffe6f0;}
+  .journal{display:block;width:100%;box-sizing:border-box;min-height:150px;line-height:1.6;border:1px solid var(--cardbd);border-radius:16px;background:var(--item);color:var(--ink);font-family:inherit;font-size:14px;padding:14px 16px;resize:vertical;outline:none;transition:border-color .2s,box-shadow .2s;}
+  .journal:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(232,70,127,.15);}
+  .journal::placeholder{color:var(--muted);opacity:.85;}
+  .note-saved{text-align:right;font-size:12px;color:#36b37e;font-weight:600;margin-top:6px;min-height:16px;}
+
   /* === Grafik mood 7 hari === */
   .t-chart .badge{background:#e0f0ff;}
   .mood-week{display:flex;gap:7px;justify-content:space-between;}
@@ -176,6 +193,7 @@
 </head>
 <body>
   <div class="floaties" id="floaties"></div>
+  <div class="scroll-prog" id="scrollProg" aria-hidden="true"></div>
   <button class="theme-btn" id="themeBtn" title="Mode gelap" aria-label="Ganti mode gelap/terang">🌙</button>
 
   <div id="intro">
@@ -274,7 +292,7 @@
 
     <div class="card t-note" id="journal">
       <div class="sec-head"><div class="badge">📝</div><div><h2>Catatan Hati Hari Ini</h2><small>jangan dipendem, tulis aja di sini</small></div></div>
-      <textarea class="journal" id="note" placeholder="Tulis apa yang kamu pikirin / rasain hari ini..."></textarea>
+      <textarea class="journal" id="note" rows="6" placeholder="Tulis apa yang kamu pikirin / rasain hari ini..."></textarea>
       <div class="note-saved" id="noteSaved"></div>
     </div>
 
@@ -653,11 +671,34 @@
     document.querySelectorAll('.card').forEach(function(c){ io.observe(c); });
   }
 
+  function initScrollProgress(){
+    const bar=$('scrollProg');
+    const nav=document.querySelector('nav');
+    let ticking=false, lastY=window.scrollY||0;
+    function upd(){
+      const h=document.documentElement;
+      const y=h.scrollTop||window.scrollY||0;
+      const max=h.scrollHeight-h.clientHeight;
+      if(bar) bar.style.width=(max>0?(y/max*100):0)+'%';
+      if(nav){
+        if(y<140 || y<lastY) nav.classList.remove('nav-hidden');   // dekat atas / scroll naik -> tampil
+        else if(y>lastY+6) nav.classList.add('nav-hidden');         // scroll turun -> sembunyi
+      }
+      lastY=y;
+      ticking=false;
+    }
+    function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(upd); } }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll,{passive:true});
+    upd();
+  }
+
   function initNav(){
     if(!('IntersectionObserver' in window))return;
+    const nav=document.querySelector('nav');
     const links=document.querySelectorAll('nav a');
     const map={}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)]=a; });
-    const io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); if(map[e.target.id])map[e.target.id].classList.add('active'); } }); },{rootMargin:'-45% 0px -50% 0px'});
+    const io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); const a=map[e.target.id]; if(a){ a.classList.add('active'); if(nav)nav.scrollTo({left:a.offsetLeft-nav.clientWidth/2+a.offsetWidth/2,behavior:'smooth'}); } } }); },{rootMargin:'-45% 0px -50% 0px'});
     ['progress','milestone','prayer','checklist','water','mood','moodchart','journal','pantangan','boleh','goals'].forEach(function(id){ const el=$(id); if(el)io.observe(el); });
   }
 
@@ -681,6 +722,7 @@
   initFloaties();
   initReveal();
   initNav();
+  initScrollProgress();
   initIntro();
   updateClock();
   updateCountdown();
