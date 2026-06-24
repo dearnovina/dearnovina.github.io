@@ -21,8 +21,8 @@
   :root{--rose:#e8467f;--rose-d:#c9356a;--pink:#ff8fb4;--bg1:#fff5fa;--bg2:#ffe9f2;--ink:#4a2236;--muted:#9b6a82;--card:rgba(255,255,255,.82);--cardbd:rgba(232,70,127,.14);--glass:rgba(255,255,255,.8);--item:rgba(232,70,127,.06);--ring:#ffe0ec;--grad:linear-gradient(135deg,#ff6fa5,#c44ed9);--shadow:0 10px 30px rgba(214,51,108,.12);}
   [data-theme="dark"]{--rose:#ff86b0;--rose-d:#ffb3cf;--pink:#ff8fb4;--bg1:#1b0f18;--bg2:#120a10;--ink:#f6dde9;--muted:#c49bb0;--card:rgba(42,24,36,.74);--cardbd:rgba(255,255,255,.08);--glass:rgba(30,16,26,.74);--item:rgba(255,255,255,.05);--ring:rgba(255,255,255,.12);--shadow:0 12px 32px rgba(0,0,0,.45);}
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  html{scroll-behavior:smooth;}
-  body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;background:linear-gradient(160deg,var(--bg1),var(--bg2));position:relative;transition:background .4s,color .4s;padding-bottom:100px;}
+  html{scroll-behavior:smooth;overflow-x:hidden;}
+  body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);min-height:100vh;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom;background:linear-gradient(160deg,var(--bg1),var(--bg2));position:relative;transition:background .4s,color .4s;padding-bottom:100px;}
   body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 12% 8%,rgba(255,179,209,.4),transparent 42%),radial-gradient(circle at 88% 14%,rgba(217,167,255,.38),transparent 44%);}
   [data-theme="dark"] body::before{background:radial-gradient(circle at 12% 8%,rgba(255,134,176,.14),transparent 40%),radial-gradient(circle at 88% 14%,rgba(150,110,200,.16),transparent 42%);}
 
@@ -60,7 +60,7 @@
   .install-btn.show{display:inline-flex;}
   .install-btn:active{transform:scale(.93);}
 
-  .wrap{position:relative;z-index:5;max-width:620px;margin:0 auto;padding:16px 18px 8px;}
+  .wrap{position:relative;z-index:5;max-width:620px;margin:0 auto;padding:16px 18px 8px;overflow-x:clip;}
   .view{display:none;}
   .view.active{display:block;animation:viewIn .44s cubic-bezier(.22,.61,.36,1);}
   .view.active.rev{animation-name:viewInRev;}
